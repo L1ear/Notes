@@ -1,0 +1,9 @@
+site_name: My Docs
+
+theme:
+  name: readthedocs
+
+nav:
+  - Linux:
+    - 'OpenSBI': 'Linux\OpenSBI.md'
+  - About: 'infos\about.md'
