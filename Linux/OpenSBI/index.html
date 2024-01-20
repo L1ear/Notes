@@ -76,35 +76,217 @@
               
                 <p>基于OpenSBI v1.3对基本boot流程做简要解析</p>
 <p><img alt="image-20240120144742110" src="../OpenSBI.assert/image-20240120144742110.png" /></p>
-<p><img alt="image-20240120191216899" src="../OpenSBI.assets/image-20240120191216899.png" /></p>
 <h3 id="fw_bases">fw_base.S</h3>
-<p>OpenSBI从这里进入，这里提供了<code>_start</code>符号：</p>
-<pre><code class="language-asm">        .section .entry, &quot;ax&quot;, %progbits
+<p>OpenSBI从这里进入，这里提供了<code>_start</code>符号<a href="#amo">(原子指令参考[1])</a>：</p>
+<pre><code class="language-assembly">    .section .entry, &quot;ax&quot;, %progbits
     .align 3
     .globl _start
     .globl _start_warm
 _start:
     /* Find preferred boot HART id */
     MOV_3R  s0, a0, s1, a1, s2, a2
-    call    fw_boot_hart
+    call    fw_boot_hart            //这里根据所选择的固件类型（jump、dynamic、payload决定），对于dynamic返回执行boot的hartid，其他返回-1；
     add a6, a0, zero
     MOV_3R  a0, s0, a1, s1, a2, s2
     li  a7, -1
-    beq a6, a7, _try_lottery
+    beq a6, a7, _try_lottery        //如果是jump或payload固件，则尝试彩票算法决定执行boot的hart
     /* Jump to relocation wait loop if we are not boot hart */
     bne a0, a6, _wait_relocate_copy_done
 _try_lottery:
+    /*2. 原子写操作：先将(a6)中的内容记为t，然后将a7+t的内容写入(a6),然后把t写入a6
+     *   先执行的hart：a7 为 1， (a6) = _relocate_lottery = 1，a6=0
+     *   后执行的hart：由于每个cpu都有一个寄存器，所以此时当前cpu的a6依然为_relocate_lottery地址，但是(a6)的值为1， 
+     *                          执行后 a7为1，a6) = _relocate_lottery = 2，a6=1
+     * 总结：先执行amoadd.w a6, a7, (a6)指令的cpu会成为冷启动的cpu，其他cpu会跳转到_wait_relocate_copy_done等待
+     */
     /* Jump to relocation wait loop if we don't get relocation lottery */
     lla a6, _relocate_lottery
     li  a7, 1
     amoadd.w a6, a7, (a6)
     bnez    a6, _wait_relocate_copy_done
 
+    /*获取SBI固件自身在内存中的地址以及将要load的地址*/
     /* Save load address */
     lla t0, _load_start
     lla t1, _fw_start
     REG_S   t1, 0(t0)
 </code></pre>
+<p>接下来进行OpenSBI固件的从定位：</p>
+<pre><code class="language-assembly">
+#ifdef FW_PIC
+···                 //由于未使用动态链接，此处不过多介绍
+#else
+    /*此处由之前通过彩票算法决定的hart进行重定位，其他hart进入_wait_for_boot_hart等待*/
+    /* Relocate if load address != link address */
+_relocate:
+    lla t0, _link_start
+    REG_L   t0, 0(t0)
+    lla t1, _link_end
+    REG_L   t1, 0(t1)
+    lla t2, _load_start
+    REG_L   t2, 0(t2)
+    beq t0, t2, _relocate_done
+    sub t3, t1, t0
+    add t3, t3, t2
+    lla t4, _relocate_done
+    sub t4, t4, t2
+    add t4, t4, t0
+    blt t2, t0, _relocate_copy_to_upper
+_relocate_copy_to_lower:
+    ble t1, t2, _relocate_copy_to_lower_loop
+    lla t3, _relocate_lottery
+    BRANGE  t2, t1, t3, _start_hang
+    lla t3, _boot_status
+    BRANGE  t2, t1, t3, _start_hang
+    lla t3, _relocate
+    lla t5, _relocate_done
+    BRANGE  t2, t1, t3, _start_hang
+    BRANGE  t2, t1, t5, _start_hang
+    BRANGE  t3, t5, t2, _start_hang
+_relocate_copy_to_lower_loop:
+    REG_L   t3, 0(t2)
+    REG_S   t3, 0(t0)
+    add t0, t0, __SIZEOF_POINTER__
+    add t2, t2, __SIZEOF_POINTER__
+    blt t0, t1, _relocate_copy_to_lower_loop
+    jr  t4
+_relocate_copy_to_upper:
+    ble t3, t0, _relocate_copy_to_upper_loop
+    lla t2, _relocate_lottery
+    BRANGE  t0, t3, t2, _start_hang
+    lla t2, _boot_status
+    BRANGE  t0, t3, t2, _start_hang
+    lla t2, _relocate
+    lla t5, _relocate_done
+    BRANGE  t0, t3, t2, _start_hang
+    BRANGE  t0, t3, t5, _start_hang
+    BRANGE  t2, t5, t0, _start_hang
+_relocate_copy_to_upper_loop:
+    add t3, t3, -__SIZEOF_POINTER__
+    add t1, t1, -__SIZEOF_POINTER__
+    REG_L   t2, 0(t3)
+    REG_S   t2, 0(t1)
+    blt t0, t1, _relocate_copy_to_upper_loop
+    jr  t4
+_wait_relocate_copy_done:
+    lla t0, _fw_start
+    lla t1, _link_start
+    REG_L   t1, 0(t1)
+    beq t0, t1, _wait_for_boot_hart
+    lla t2, _boot_status
+    lla t3, _wait_for_boot_hart
+    sub t3, t3, t0
+    add t3, t3, t1
+1:
+    /* waitting for relocate copy done (_boot_status == 1) */
+    li  t4, BOOT_STATUS_RELOCATE_DONE
+    REG_L   t5, 0(t2)
+    /* Reduce the bus traffic so that boot hart may proceed faster */
+    nop
+    nop
+    nop
+    bgt     t4, t5, 1b
+    jr  t3
+#endif
+
+    /* waiting for boot hart to be done (_boot_status == 2) */
+_wait_for_boot_hart:
+    li  t0, BOOT_STATUS_BOOT_HART_DONE
+    lla t1, _boot_status
+    REG_L   t1, 0(t1)
+    /* Reduce the bus traffic so that boot hart may proceed faster */
+    div t2, t2, zero
+    div t2, t2, zero
+    div t2, t2, zero
+    bne t0, t1, _wait_for_boot_hart
+
+_start_warm:
+    /* Reset all registers for non-boot HARTs */
+    li  ra, 0
+    call    _reset_regs
+
+    /* Disable all interrupts */
+    csrw    CSR_MIE, zero
+
+    /* Find HART count and HART stack size */
+    lla a4, platform
+#if __riscv_xlen == 64
+    lwu s7, SBI_PLATFORM_HART_COUNT_OFFSET(a4)
+    lwu s8, SBI_PLATFORM_HART_STACK_SIZE_OFFSET(a4)
+#else
+    lw  s7, SBI_PLATFORM_HART_COUNT_OFFSET(a4)
+    lw  s8, SBI_PLATFORM_HART_STACK_SIZE_OFFSET(a4)
+#endif
+    REG_L   s9, SBI_PLATFORM_HART_INDEX2ID_OFFSET(a4)
+
+    /* Find HART id */
+    csrr    s6, CSR_MHARTID
+
+    /* Find HART index */
+    beqz    s9, 3f
+    li  a4, 0
+1:
+#if __riscv_xlen == 64
+    lwu a5, (s9)
+#else
+    lw  a5, (s9)
+#endif
+    beq a5, s6, 2f
+    add s9, s9, 4
+    add a4, a4, 1
+    blt a4, s7, 1b
+2:  add s6, a4, zero
+3:  bge s6, s7, _start_hang
+
+    /* Find the scratch space based on HART index */
+    lla tp, _fw_end
+    mul a5, s7, s8
+    add tp, tp, a5
+    mul a5, s8, s6
+    sub tp, tp, a5
+    li  a5, SBI_SCRATCH_SIZE
+    sub tp, tp, a5
+
+    /* update the mscratch */
+    csrw    CSR_MSCRATCH, tp
+
+    /* Setup stack */
+    add sp, tp, zero
+
+    /* Setup trap handler */
+    lla a4, _trap_handler
+#if __riscv_xlen == 32
+    csrr    a5, CSR_MISA
+    srli    a5, a5, ('H' - 'A')
+    andi    a5, a5, 0x1
+    beq a5, zero, _skip_trap_handler_rv32_hyp
+    lla a4, _trap_handler_rv32_hyp
+_skip_trap_handler_rv32_hyp:
+#endif
+    csrw    CSR_MTVEC, a4
+
+#if __riscv_xlen == 32
+    /* Override trap exit for H-extension */
+    csrr    a5, CSR_MISA
+    srli    a5, a5, ('H' - 'A')
+    andi    a5, a5, 0x1
+    beq a5, zero, _skip_trap_exit_rv32_hyp
+    lla a4, _trap_exit_rv32_hyp
+    csrr    a5, CSR_MSCRATCH
+    REG_S   a4, SBI_SCRATCH_TRAP_EXIT_OFFSET(a5)
+_skip_trap_exit_rv32_hyp:
+#endif
+
+    /* Initialize SBI runtime */
+    csrr    a0, CSR_MSCRATCH
+    call    sbi_init
+
+    /* We don't expect to reach here hence just hang */
+    j   _start_hang
+</code></pre>
+<h2 id="_1">附录</h2>
+<p><a id="amo">[1]</a>. 原子指令：此类指令用于从<a href="https://so.csdn.net/so/search?q=存储器&amp;spm=1001.2101.3001.7020">存储器</a>（地址为 rs1 寄存器的值指定）中读出一个数据，存放至 rd 寄存器中，并且将读出的数据与 rs2 寄存器的值进行计算，再将计算后的结果写回存储器（存储器写回地址与读出地址相同）。</p>
+<p><img alt="image-20240120201055886" src="../OpenSBI.assets/image-20240120201055886.png" /></p>
               
             </div>
           </div><footer>
