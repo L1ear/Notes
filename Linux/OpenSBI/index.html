@@ -1,471 +1,825 @@
-<!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>OpenSBI - My Docs</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-  <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "OpenSBI";
-    var mkdocs_page_input_path = "Linux/OpenSBI.md";
-    var mkdocs_page_url = null;
-  </script>
-  
-  <script src="../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
-</head>
-
-<body class="wy-body-for-nav" role="document">
-
-  <div class="wy-grid-for-nav">
-
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-      <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> My Docs</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
-
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="tocbase current">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="../../RISC-V/906/Xuantie906/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.4">
     
     
       
-  <li class="navtree toctree-l1 label">
-    <p class="caption">Linux</p>
-  </li>
+        <title>OpenSBI - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
+      
+      
 
 
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
   
-
   
-    <li class="navtree toctree-l1 group">
-      <ul class="navtree subnav-l1 current">
-          
-
-
+    <body dir="ltr">
   
     
-    <li class="navtree toctree-l2 page current">
-      <a class="current" href="./">
-        OpenSBI
-          <span class="toctree-expand"></span>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fw_bases" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              OpenSBI
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    OpenSBI
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    OpenSBI
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fw_bases" class="md-nav__link">
+    <span class="md-ellipsis">
+      fw_base.S
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sbi_initc" class="md-nav__link">
+    <span class="md-ellipsis">
+      sbi_init.c
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      附录
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    RISC-V
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            RISC-V
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    906
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            906
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RISC-V/906/Xuantie906/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C906
+  </span>
+  
+
       </a>
     </li>
-    
-      
-
-  <li class="toctree-l2 current with-children">
-    <a href="#fw_bases">
-      fw_base.S
-      <span class="toctree-expand"></span>
-    </a>
-  </li>
-
-
-
-      
-
-  <li class="toctree-l2">
-    <a href="#sbi_initc">
-      sbi_init.c
-      <span class="toctree-expand"></span>
-    </a>
-  </li>
-
-
-
-      
-
-  <li class="toctree-l2">
-    <a href="#_1">
-      附录
-      <span class="toctree-expand"></span>
-    </a>
-  </li>
-
-
-
-
   
-        
-      </ul>
-    </li>
-    
-      
 
-
-  <li class="navtree toctree-l1 inactive">
-    <a class="" href="../../infos/about/">About</a>
-  </li>
-    
-  </ul>
-      </div>
-      &nbsp;
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">My Docs</a>
-      </nav>
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="../..">Docs</a> &raquo;</li>
-    
-      
-        
-          <li>Linux &raquo;</li>
-        
-      
-    
-    <li>OpenSBI</li>
-    <li class="wy-breadcrumbs-aside">
-      
-    </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main">
-            <div class="section">
               
-                <p>基于OpenSBI v1.3对基本boot流程做简要解析</p>
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infos/about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fw_bases" class="md-nav__link">
+    <span class="md-ellipsis">
+      fw_base.S
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sbi_initc" class="md-nav__link">
+    <span class="md-ellipsis">
+      sbi_init.c
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      附录
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>OpenSBI</h1>
+
+<p>基于OpenSBI v1.3对基本boot流程做简要解析</p>
 <p><img alt="image-20240120144742110" src="../OpenSBI.assert/image-20240120144742110.png" /></p>
 <h3 id="fw_bases">fw_base.S</h3>
-<p>OpenSBI从这里进入，这里提供了<code>_start</code>符号<a href="#amo">(原子指令参考[1])</a>，对于非启动核，会一直等待知道进行boot的核完成relocate以及boot等工作后才进入<a href="#otherharts">后续流程</a>.</p>
-<pre><code class="language-assembly">    .section .entry, &quot;ax&quot;, %progbits
-    .align 3
-    .globl _start
-    .globl _start_warm
-_start:
-    /* Find preferred boot HART id */
-    MOV_3R  s0, a0, s1, a1, s2, a2
-    call    fw_boot_hart            //这里根据所选择的固件类型（jump、dynamic、payload决定），对于dynamic返回执行boot的hartid，其他返回-1；
-    add a6, a0, zero
-    MOV_3R  a0, s0, a1, s1, a2, s2
-    li  a7, -1
-    beq a6, a7, _try_lottery        //如果是jump或payload固件，则尝试彩票算法决定执行boot的hart
-    /* Jump to relocation wait loop if we are not boot hart */
-    bne a0, a6, _wait_relocate_copy_done
-_try_lottery:
-    /*2. 原子写操作：先将(a6)中的内容记为t，然后将a7+t的内容写入(a6),然后把t写入a6
-     *   先执行的hart：a7 为 1， (a6) = _relocate_lottery = 1，a6=0
-     *   后执行的hart：由于每个cpu都有一个寄存器，所以此时当前cpu的a6依然为_relocate_lottery地址，但是(a6)的值为1， 
-     *                          执行后 a7为1，a6) = _relocate_lottery = 2，a6=1
-     * 总结：先执行amoadd.w a6, a7, (a6)指令的cpu会成为冷启动的cpu，其他cpu会跳转到_wait_relocate_copy_done等待
-     */
-    /* Jump to relocation wait loop if we don't get relocation lottery */
-    lla a6, _relocate_lottery
-    li  a7, 1
-    amoadd.w a6, a7, (a6)
-    bnez    a6, _wait_relocate_copy_done
-
-_wait_relocate_copy_done:
-    lla t0, _fw_start
-    lla t1, _link_start
-    REG_L   t1, 0(t1)
-    beq t0, t1, _wait_for_boot_hart         //此处比较是否需要重定位，若不需要则直接等待进行boot的hart
-    lla t2, _boot_status
-    lla t3, _wait_for_boot_hart
-    sub t3, t3, t0
-    add t3, t3, t1
-1:
-    /* waitting for relocate copy done (_boot_status == 1) */
-    li  t4, BOOT_STATUS_RELOCATE_DONE
-    REG_L   t5, 0(t2)
-    /* Reduce the bus traffic so that boot hart may proceed faster */
-    nop
-    nop
-    nop
-    bgt     t4, t5, 1b
-    jr  t3                                  //还是跳转到_wait_for_boot_hart
-#endif
-
-    /* waiting for boot hart to be done (_boot_status == 2) */
-_wait_for_boot_hart:
-    li  t0, BOOT_STATUS_BOOT_HART_DONE
-    lla t1, _boot_status
-    REG_L   t1, 0(t1)
-    /* Reduce the bus traffic so that boot hart may proceed faster */
-    div t2, t2, zero
-    div t2, t2, zero
-    div t2, t2, zero
-    bne t0, t1, _wait_for_boot_hart
-
-</code></pre>
+<p>OpenSBI从这里进入，这里提供了 <code>_start</code>符号<a href="#amo">(原子指令参考[1])</a>，对于非启动核，会一直等待知道进行boot的核完成relocate以及boot等工作后才进入<a href="#otherharts">后续流程</a>.</p>
+<div class="language-asm highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">    </span><span class="na">.section</span><span class="w"> </span><span class="no">.entry</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ax&quot;</span><span class="p">,</span><span class="w"> </span><span class="nv">%progbits</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="na">.align</span><span class="w"> </span><span class="mi">3</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="na">.globl</span><span class="w"> </span><span class="no">_start</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="na">.globl</span><span class="w"> </span><span class="no">_start_warm</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nl">_start:</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="cm">/* Find preferred boot HART id */</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nf">MOV_3R</span><span class="w">  </span><span class="no">s0</span><span class="p">,</span><span class="w"> </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">s1</span><span class="p">,</span><span class="w"> </span><span class="no">a1</span><span class="p">,</span><span class="w"> </span><span class="no">s2</span><span class="p">,</span><span class="w"> </span><span class="no">a2</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nf">call</span><span class="w">    </span><span class="no">fw_boot_hart</span><span class="w">            </span><span class="c1">//这里根据所选择的固件类型（jump、dynamic、payload决定），对于dynamic返回执行boot的hartid，其他返回-1；</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">a6</span><span class="p">,</span><span class="w"> </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">zero</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nf">MOV_3R</span><span class="w">  </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">s0</span><span class="p">,</span><span class="w"> </span><span class="no">a1</span><span class="p">,</span><span class="w"> </span><span class="no">s1</span><span class="p">,</span><span class="w"> </span><span class="no">a2</span><span class="p">,</span><span class="w"> </span><span class="no">s2</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nf">li</span><span class="w">  </span><span class="no">a7</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nf">beq</span><span class="w"> </span><span class="no">a6</span><span class="p">,</span><span class="w"> </span><span class="no">a7</span><span class="p">,</span><span class="w"> </span><span class="no">_try_lottery</span><span class="w">        </span><span class="c1">//如果是jump或payload固件，则尝试彩票算法决定执行boot的hart</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="cm">/* Jump to relocation wait loop if we are not boot hart */</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="nf">bne</span><span class="w"> </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">a6</span><span class="p">,</span><span class="w"> </span><span class="no">_wait_relocate_copy_done</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="nl">_try_lottery:</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="cm">/*2. 原子写操作：先将(a6)中的内容记为t，然后将a7+t的内容写入(a6),然后把t写入a6</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="cm">     *   先执行的hart：a7 为 1， (a6) = _relocate_lottery = 1，a6=0</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="cm">     *   后执行的hart：由于每个cpu都有一个寄存器，所以此时当前cpu的a6依然为_relocate_lottery地址，但是(a6)的值为1， </span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="cm">     *                          执行后 a7为1，a6) = _relocate_lottery = 2，a6=1</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="cm">     * 总结：先执行amoadd.w a6, a7, (a6)指令的cpu会成为冷启动的cpu，其他cpu会跳转到_wait_relocate_copy_done等待</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="cm">     */</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="cm">/* Jump to relocation wait loop if we don&#39;t get relocation lottery */</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">a6</span><span class="p">,</span><span class="w"> </span><span class="no">_relocate_lottery</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="nf">li</span><span class="w">  </span><span class="no">a7</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="nf">amoadd.w</span><span class="w"> </span><span class="no">a6</span><span class="p">,</span><span class="w"> </span><span class="no">a7</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="no">a6</span><span class="p">)</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="nf">bnez</span><span class="w">    </span><span class="no">a6</span><span class="p">,</span><span class="w"> </span><span class="no">_wait_relocate_copy_done</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="nl">_wait_relocate_copy_done:</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">_fw_start</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">_link_start</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="nf">REG_L</span><span class="w">   </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">(</span><span class="no">t1</span><span class="p">)</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">    </span><span class="nf">beq</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">_wait_for_boot_hart</span><span class="w">         </span><span class="c1">//此处比较是否需要重定位，若不需要则直接等待进行boot的hart</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">_boot_status</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">_wait_for_boot_hart</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">    </span><span class="nf">sub</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">t0</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">t1</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="err">1:</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">    </span><span class="cm">/* waitting for relocate copy done (_boot_status == 1) */</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">    </span><span class="nf">li</span><span class="w">  </span><span class="no">t4</span><span class="p">,</span><span class="w"> </span><span class="no">BOOT_STATUS_RELOCATE_DONE</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">    </span><span class="nf">REG_L</span><span class="w">   </span><span class="no">t5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">(</span><span class="no">t2</span><span class="p">)</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="cm">/* Reduce the bus traffic so that boot hart may proceed faster */</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">    </span><span class="nf">nop</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">    </span><span class="nf">nop</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">    </span><span class="nf">nop</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">    </span><span class="nf">bgt</span><span class="w">     </span><span class="no">t4</span><span class="p">,</span><span class="w"> </span><span class="no">t5</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="no">b</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">    </span><span class="nf">jr</span><span class="w">  </span><span class="no">t3</span><span class="w">                                  </span><span class="c1">//还是跳转到_wait_for_boot_hart</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="c1">#endif</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">    </span><span class="cm">/* waiting for boot hart to be done (_boot_status == 2) */</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="nl">_wait_for_boot_hart:</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">    </span><span class="nf">li</span><span class="w">  </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">BOOT_STATUS_BOOT_HART_DONE</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">_boot_status</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">    </span><span class="nf">REG_L</span><span class="w">   </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">(</span><span class="no">t1</span><span class="p">)</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="w">    </span><span class="cm">/* Reduce the bus traffic so that boot hart may proceed faster */</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="w">    </span><span class="nf">div</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">zero</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">    </span><span class="nf">div</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">zero</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">    </span><span class="nf">div</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">zero</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="w">    </span><span class="nf">bne</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">_wait_for_boot_hart</span>
+</span></code></pre></div>
 <p>接下来进行OpenSBI固件的重定位：</p>
-<pre><code class="language-assembly">    /*获取SBI固件自身在内存中的地址以及将要load的地址*/
-    /* Save load address */
-    lla t0, _load_start
-    lla t1, _fw_start
-    REG_S   t1, 0(t0)
-#ifdef FW_PIC
-···                 //由于未使用动态链接，此处不过多介绍
-#else
-    /*此处由之前通过彩票算法决定的hart进行重定位，其他hart进入_wait_for_boot_hart等待*/
-    /* Relocate if load address != link address */
-_relocate:
-    lla t0, _link_start
-    REG_L   t0, 0(t0)
-    lla t1, _link_end
-    REG_L   t1, 0(t1)
-    lla t2, _load_start
-    REG_L   t2, 0(t2)
-    beq t0, t2, _relocate_done
-    sub t3, t1, t0
-    add t3, t3, t2
-    lla t4, _relocate_done
-    sub t4, t4, t2
-    add t4, t4, t0
-    blt t2, t0, _relocate_copy_to_upper
-_relocate_copy_to_lower:
-    ble t1, t2, _relocate_copy_to_lower_loop
-    lla t3, _relocate_lottery
-    BRANGE  t2, t1, t3, _start_hang
-    lla t3, _boot_status
-    BRANGE  t2, t1, t3, _start_hang
-    lla t3, _relocate
-    lla t5, _relocate_done
-    BRANGE  t2, t1, t3, _start_hang
-    BRANGE  t2, t1, t5, _start_hang
-    BRANGE  t3, t5, t2, _start_hang
-_relocate_copy_to_lower_loop:
-    REG_L   t3, 0(t2)
-    REG_S   t3, 0(t0)
-    add t0, t0, __SIZEOF_POINTER__
-    add t2, t2, __SIZEOF_POINTER__
-    blt t0, t1, _relocate_copy_to_lower_loop
-    jr  t4
-_relocate_copy_to_upper:
-    ble t3, t0, _relocate_copy_to_upper_loop
-    lla t2, _relocate_lottery
-    BRANGE  t0, t3, t2, _start_hang
-    lla t2, _boot_status
-    BRANGE  t0, t3, t2, _start_hang
-    lla t2, _relocate
-    lla t5, _relocate_done
-    BRANGE  t0, t3, t2, _start_hang
-    BRANGE  t0, t3, t5, _start_hang
-    BRANGE  t2, t5, t0, _start_hang
-_relocate_copy_to_upper_loop:
-    add t3, t3, -__SIZEOF_POINTER__
-    add t1, t1, -__SIZEOF_POINTER__
-    REG_L   t2, 0(t3)
-    REG_S   t2, 0(t1)
-    blt t0, t1, _relocate_copy_to_upper_loop
-    jr  t4                      //此处jump的地址是relocate后的_relocate_done
-
-</code></pre>
-<p>​   在完成固件的relocate之后跳转到t4寄存器存储的地址，也就是relocate后的_relocate_done地址， _relocate_done见下</p>
-<pre><code class="language-assembly">_relocate_done:
-    /*
-     * Mark relocate copy done
-     * Use _boot_status copy relative to the load address
-     */
-    lla t0, _boot_status
-#ifndef FW_PIC
-    lla t1, _link_start
-    REG_L   t1, 0(t1)
-    lla t2, _load_start
-    REG_L   t2, 0(t2)
-    sub t0, t0, t1
-    add t0, t0, t2
-#endif
-    li  t1, BOOT_STATUS_RELOCATE_DONE       //这里将状态标志设置为完成重定向
-    REG_S   t1, 0(t0)
-    fence   rw, rw
-
-    /*接下来从重定向后的地址开始执行一系列初始化，包括：
-    *   1、复位处理器所有寄存器；
-    *   2、清零BSS段；
-    *   3、设置临时的trap地址；
-    *   4、设置临时堆栈；
-    *   5、保存固件信息（禁dynamic固件使用，此处跳过介绍）
-    */
-
-    /* At this point we are running from link address */
-
-    /* Reset all registers for boot HART */
-    li  ra, 0
-    call    _reset_regs
-    /* Zero-out BSS */
-    lla s4, _bss_start
-    lla s5, _bss_end
-_bss_zero:
-    REG_S   zero, (s4)
-    add s4, s4, __SIZEOF_POINTER__
-    blt s4, s5, _bss_zero
-    /* Setup temporary trap handler */
-    lla s4, _start_hang
-    csrw    CSR_MTVEC, s4
-    /* Setup temporary stack */
-    lla s4, _fw_end
-    li  s5, (SBI_SCRATCH_SIZE * 2)
-    add sp, s4, s5
-    /* Allow main firmware to save info */
-    MOV_5R  s0, a0, s1, a1, s2, a2, s3, a3, s4, a4
-    call    fw_save_info
-    MOV_5R  a0, s0, a1, s1, a2, s2, a3, s3, a4, s4
-
-    /*
-    *   接下来对设备树进行处理，主要在fw_platform_init()这个C函数中进行处理，由不同的platform决定
-    */
-    #ifdef FW_FDT_PATH
-    /* Override previous arg1 */
-    lla a1, fw_fdt_bin
-    #endif
-    /*
-     * Initialize platform
-     * Note: The a0 to a4 registers passed to the
-     * firmware are parameters to this function.
-     */
-    MOV_5R  s0, a0, s1, a1, s2, a2, s3, a3, s4, a4
-    call    fw_platform_init
-    add t0, a0, zero
-    MOV_5R  a0, s0, a1, s1, a2, s2, a3, s3, a4, s4
-    add a1, t0, zero
-
-
-    /* 
-     * 提前从内存中加载每个hart的相关信息，来自之前的fw_platform_init()
-     * Preload HART details
-     * s7 -&gt; HART Count
-     * s8 -&gt; HART Stack Size
-     * s9 -&gt; Heap Size
-     * s10 -&gt; Heap Offset
-     */
-    lla a4, platform
-#if __riscv_xlen &gt; 32
-    lwu s7, SBI_PLATFORM_HART_COUNT_OFFSET(a4)
-    lwu s8, SBI_PLATFORM_HART_STACK_SIZE_OFFSET(a4)
-    lwu s9, SBI_PLATFORM_HEAP_SIZE_OFFSET(a4)
-#else
-    lw  s7, SBI_PLATFORM_HART_COUNT_OFFSET(a4)
-    lw  s8, SBI_PLATFORM_HART_STACK_SIZE_OFFSET(a4)
-    lw  s9, SBI_PLATFORM_HEAP_SIZE_OFFSET(a4)
-#endif
-
-    /*  接下来为每个核分配各自的堆栈等
-     *  一系列初始化，并调用fw_options()函数
-     */ 
-    /* Setup scratch space for all the HARTs*/
-    lla tp, _fw_end
-    mul a5, s7, s8
-    add tp, tp, a5
-    /* Setup heap base address */
-    lla s10, _fw_start
-    sub s10, tp, s10
-    add tp, tp, s9
-    /* Keep a copy of tp */
-    add t3, tp, zero
-    /* Counter */
-    li  t2, 1
-    /* hartid 0 is mandated by ISA */
-    li  t1, 0
-_scratch_init:
-    /*
-     * The following registers hold values that are computed before
-     * entering this block, and should remain unchanged.
-     *
-     * t3 -&gt; the firmware end address
-     * s7 -&gt; HART count
-     * s8 -&gt; HART stack size
-     * s9 -&gt; Heap Size
-     * s10 -&gt; Heap Offset
-     */
-    add tp, t3, zero
-    sub tp, tp, s9
-    mul a5, s8, t1
-    sub tp, tp, a5
-    li  a5, SBI_SCRATCH_SIZE
-    sub tp, tp, a5
-
-    /* Initialize scratch space */
-    /* Store fw_start and fw_size in scratch space */
-    lla a4, _fw_start
-    sub a5, t3, a4
-    REG_S   a4, SBI_SCRATCH_FW_START_OFFSET(tp)
-    REG_S   a5, SBI_SCRATCH_FW_SIZE_OFFSET(tp)
-
-    /* Store R/W section's offset in scratch space */
-    lla a5, _fw_rw_start
-    sub a5, a5, a4
-    REG_S   a5, SBI_SCRATCH_FW_RW_OFFSET(tp)
-
-    /* Store fw_heap_offset and fw_heap_size in scratch space */
-    REG_S   s10, SBI_SCRATCH_FW_HEAP_OFFSET(tp)
-    REG_S   s9, SBI_SCRATCH_FW_HEAP_SIZE_OFFSET(tp)
-
-    /* Store next arg1 in scratch space */
-    MOV_3R  s0, a0, s1, a1, s2, a2
-    call    fw_next_arg1
-    REG_S   a0, SBI_SCRATCH_NEXT_ARG1_OFFSET(tp)
-    MOV_3R  a0, s0, a1, s1, a2, s2
-    /* Store next address in scratch space */
-    MOV_3R  s0, a0, s1, a1, s2, a2
-    call    fw_next_addr
-    REG_S   a0, SBI_SCRATCH_NEXT_ADDR_OFFSET(tp)
-    MOV_3R  a0, s0, a1, s1, a2, s2
-    /* Store next mode in scratch space */
-    MOV_3R  s0, a0, s1, a1, s2, a2
-    call    fw_next_mode
-    REG_S   a0, SBI_SCRATCH_NEXT_MODE_OFFSET(tp)
-    MOV_3R  a0, s0, a1, s1, a2, s2
-    /* Store warm_boot address in scratch space */
-    lla a4, _start_warm
-    REG_S   a4, SBI_SCRATCH_WARMBOOT_ADDR_OFFSET(tp)
-    /* Store platform address in scratch space */
-    lla a4, platform
-    REG_S   a4, SBI_SCRATCH_PLATFORM_ADDR_OFFSET(tp)
-    /* Store hartid-to-scratch function address in scratch space */
-    lla a4, _hartid_to_scratch
-    REG_S   a4, SBI_SCRATCH_HARTID_TO_SCRATCH_OFFSET(tp)
-    /* Store trap-exit function address in scratch space */
-    lla a4, _trap_exit
-    REG_S   a4, SBI_SCRATCH_TRAP_EXIT_OFFSET(tp)
-    /* Clear tmp0 in scratch space */
-    REG_S   zero, SBI_SCRATCH_TMP0_OFFSET(tp)
-    /* Store firmware options in scratch space */
-    MOV_3R  s0, a0, s1, a1, s2, a2
-#ifdef FW_OPTIONS
-    li  a0, FW_OPTIONS
-#else
-    call    fw_options
-#endif
-    REG_S   a0, SBI_SCRATCH_OPTIONS_OFFSET(tp)
-    MOV_3R  a0, s0, a1, s1, a2, s2
-    /* Move to next scratch space */
-    add t1, t1, t2
-    blt t1, s7, _scratch_init
-
-    /* 接下来是FDT设备树的重定位，与固件的重定位相似，此处省略*/
-</code></pre>
-<p>在完成所有的基本初始化、以及固件和设备树的重定位后，进行boot的hart以及等待中的harts都进入下一个阶段，<a id="otherharts">_start_warm</a>, 完成这个阶段后就进入了C编写的高级语言世界，不用看汇编了www。</p>
+<div class="language-asm highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span><span class="cm">/*获取SBI固件自身在内存中的地址以及将要load的地址*/</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="cm">/* Save load address */</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">_load_start</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">_fw_start</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">(</span><span class="no">t0</span><span class="p">)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1">#ifdef FW_PIC</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="err">···</span><span class="w">                 </span><span class="c1">//由于未使用动态链接，此处不过多介绍</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1">#else</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="cm">/*此处由之前通过彩票算法决定的hart进行重定位，其他hart进入_wait_for_boot_hart等待*/</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="cm">/* Relocate if load address != link address */</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="nl">_relocate:</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">_link_start</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="nf">REG_L</span><span class="w">   </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">(</span><span class="no">t0</span><span class="p">)</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">_link_end</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="nf">REG_L</span><span class="w">   </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">(</span><span class="no">t1</span><span class="p">)</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">_load_start</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="nf">REG_L</span><span class="w">   </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">(</span><span class="no">t2</span><span class="p">)</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="nf">beq</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">_relocate_done</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="nf">sub</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">t0</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">t2</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t4</span><span class="p">,</span><span class="w"> </span><span class="no">_relocate_done</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="nf">sub</span><span class="w"> </span><span class="no">t4</span><span class="p">,</span><span class="w"> </span><span class="no">t4</span><span class="p">,</span><span class="w"> </span><span class="no">t2</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">t4</span><span class="p">,</span><span class="w"> </span><span class="no">t4</span><span class="p">,</span><span class="w"> </span><span class="no">t0</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">    </span><span class="nf">blt</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">_relocate_copy_to_upper</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="nl">_relocate_copy_to_lower:</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">    </span><span class="nf">ble</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">_relocate_copy_to_lower_loop</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">_relocate_lottery</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">    </span><span class="nf">BRANGE</span><span class="w">  </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">_start_hang</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">_boot_status</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">    </span><span class="nf">BRANGE</span><span class="w">  </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">_start_hang</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">_relocate</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t5</span><span class="p">,</span><span class="w"> </span><span class="no">_relocate_done</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">    </span><span class="nf">BRANGE</span><span class="w">  </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">_start_hang</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">    </span><span class="nf">BRANGE</span><span class="w">  </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">t5</span><span class="p">,</span><span class="w"> </span><span class="no">_start_hang</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="w">    </span><span class="nf">BRANGE</span><span class="w">  </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">t5</span><span class="p">,</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">_start_hang</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="nl">_relocate_copy_to_lower_loop:</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="w">    </span><span class="nf">REG_L</span><span class="w">   </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">(</span><span class="no">t2</span><span class="p">)</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">(</span><span class="no">t0</span><span class="p">)</span>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">__SIZEOF_POINTER__</span>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">__SIZEOF_POINTER__</span>
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="w">    </span><span class="nf">blt</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">_relocate_copy_to_lower_loop</span>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="w">    </span><span class="nf">jr</span><span class="w">  </span><span class="no">t4</span>
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="nl">_relocate_copy_to_upper:</span>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="w">    </span><span class="nf">ble</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">_relocate_copy_to_upper_loop</span>
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">_relocate_lottery</span>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="w">    </span><span class="nf">BRANGE</span><span class="w">  </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">_start_hang</span>
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">_boot_status</span>
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="w">    </span><span class="nf">BRANGE</span><span class="w">  </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">_start_hang</span>
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">_relocate</span>
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t5</span><span class="p">,</span><span class="w"> </span><span class="no">_relocate_done</span>
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="w">    </span><span class="nf">BRANGE</span><span class="w">  </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">_start_hang</span>
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="w">    </span><span class="nf">BRANGE</span><span class="w">  </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">t5</span><span class="p">,</span><span class="w"> </span><span class="no">_start_hang</span>
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="w">    </span><span class="nf">BRANGE</span><span class="w">  </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">t5</span><span class="p">,</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">_start_hang</span>
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="nl">_relocate_copy_to_upper_loop:</span>
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="p">-</span><span class="no">__SIZEOF_POINTER__</span>
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="p">-</span><span class="no">__SIZEOF_POINTER__</span>
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a><span class="w">    </span><span class="nf">REG_L</span><span class="w">   </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">(</span><span class="no">t3</span><span class="p">)</span>
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">(</span><span class="no">t1</span><span class="p">)</span>
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a><span class="w">    </span><span class="nf">blt</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">_relocate_copy_to_upper_loop</span>
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="w">    </span><span class="nf">jr</span><span class="w">  </span><span class="no">t4</span><span class="w">                      </span><span class="c1">//此处jump的地址是relocate后的_relocate_done</span>
+</span></code></pre></div>
+<p>在完成固件的relocate之后跳转到t4寄存器存储的地址，也就是relocate后的_relocate_done地址， _relocate_done见下:</p>
+<div class="language-asm highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nl">_relocate_done:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="cm">/*</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="cm">     * Mark relocate copy done</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="cm">     * Use _boot_status copy relative to the load address</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="cm">     */</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">_boot_status</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1">#ifndef FW_PIC</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">_link_start</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="nf">REG_L</span><span class="w">   </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">(</span><span class="no">t1</span><span class="p">)</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="no">_load_start</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="nf">REG_L</span><span class="w">   </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">(</span><span class="no">t2</span><span class="p">)</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="nf">sub</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">t1</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">t2</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="c1">#endif</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="nf">li</span><span class="w">  </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">BOOT_STATUS_RELOCATE_DONE</span><span class="w">       </span><span class="c1">//这里将状态标志设置为完成重定向</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">(</span><span class="no">t0</span><span class="p">)</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">    </span><span class="nf">fence</span><span class="w">   </span><span class="no">rw</span><span class="p">,</span><span class="w"> </span><span class="no">rw</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span><span class="cm">/*接下来从重定向后的地址开始执行一系列初始化，包括：</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="cm">    *   1、复位处理器所有寄存器；</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="cm">    *   2、清零BSS段；</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="cm">    *   3、设置临时的trap地址；</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="cm">    *   4、设置临时堆栈；</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="cm">    *   5、保存固件信息（禁dynamic固件使用，此处跳过介绍）</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="cm">    */</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">    </span><span class="cm">/* At this point we are running from link address */</span>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">    </span><span class="cm">/* Reset all registers for boot HART */</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">    </span><span class="nf">li</span><span class="w">  </span><span class="no">ra</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">    </span><span class="nf">call</span><span class="w">    </span><span class="no">_reset_regs</span>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">    </span><span class="cm">/* Zero-out BSS */</span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">s4</span><span class="p">,</span><span class="w"> </span><span class="no">_bss_start</span>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">s5</span><span class="p">,</span><span class="w"> </span><span class="no">_bss_end</span>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="nl">_bss_zero:</span>
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">zero</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="no">s4</span><span class="p">)</span>
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">s4</span><span class="p">,</span><span class="w"> </span><span class="no">s4</span><span class="p">,</span><span class="w"> </span><span class="no">__SIZEOF_POINTER__</span>
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="w">    </span><span class="nf">blt</span><span class="w"> </span><span class="no">s4</span><span class="p">,</span><span class="w"> </span><span class="no">s5</span><span class="p">,</span><span class="w"> </span><span class="no">_bss_zero</span>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="w">    </span><span class="cm">/* Setup temporary trap handler */</span>
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">s4</span><span class="p">,</span><span class="w"> </span><span class="no">_start_hang</span>
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="w">    </span><span class="nf">csrw</span><span class="w">    </span><span class="no">CSR_MTVEC</span><span class="p">,</span><span class="w"> </span><span class="no">s4</span>
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="w">    </span><span class="cm">/* Setup temporary stack */</span>
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">s4</span><span class="p">,</span><span class="w"> </span><span class="no">_fw_end</span>
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a><span class="w">    </span><span class="nf">li</span><span class="w">  </span><span class="no">s5</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="no">SBI_SCRATCH_SIZE</span><span class="w"> </span><span class="p">*</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">sp</span><span class="p">,</span><span class="w"> </span><span class="no">s4</span><span class="p">,</span><span class="w"> </span><span class="no">s5</span>
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a><span class="w">    </span><span class="cm">/* Allow main firmware to save info */</span>
+</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a><span class="w">    </span><span class="nf">MOV_5R</span><span class="w">  </span><span class="no">s0</span><span class="p">,</span><span class="w"> </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">s1</span><span class="p">,</span><span class="w"> </span><span class="no">a1</span><span class="p">,</span><span class="w"> </span><span class="no">s2</span><span class="p">,</span><span class="w"> </span><span class="no">a2</span><span class="p">,</span><span class="w"> </span><span class="no">s3</span><span class="p">,</span><span class="w"> </span><span class="no">a3</span><span class="p">,</span><span class="w"> </span><span class="no">s4</span><span class="p">,</span><span class="w"> </span><span class="no">a4</span>
+</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a><span class="w">    </span><span class="nf">call</span><span class="w">    </span><span class="no">fw_save_info</span>
+</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a><span class="w">    </span><span class="nf">MOV_5R</span><span class="w">  </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">s0</span><span class="p">,</span><span class="w"> </span><span class="no">a1</span><span class="p">,</span><span class="w"> </span><span class="no">s1</span><span class="p">,</span><span class="w"> </span><span class="no">a2</span><span class="p">,</span><span class="w"> </span><span class="no">s2</span><span class="p">,</span><span class="w"> </span><span class="no">a3</span><span class="p">,</span><span class="w"> </span><span class="no">s3</span><span class="p">,</span><span class="w"> </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">s4</span>
+</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>
+</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a><span class="w">    </span><span class="cm">/*</span>
+</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a><span class="cm">    *   接下来对设备树进行处理，主要在fw_platform_init()这个C函数中进行处理，由不同的platform决定</span>
+</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a><span class="cm">    */</span>
+</span><span id="__span-2-54"><a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a><span class="w">    </span><span class="c1">#ifdef FW_FDT_PATH</span>
+</span><span id="__span-2-55"><a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a><span class="w">    </span><span class="cm">/* Override previous arg1 */</span>
+</span><span id="__span-2-56"><a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">a1</span><span class="p">,</span><span class="w"> </span><span class="no">fw_fdt_bin</span>
+</span><span id="__span-2-57"><a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a><span class="w">    </span><span class="c1">#endif</span>
+</span><span id="__span-2-58"><a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a><span class="w">    </span><span class="cm">/*</span>
+</span><span id="__span-2-59"><a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a><span class="cm">     * Initialize platform</span>
+</span><span id="__span-2-60"><a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a><span class="cm">     * Note: The a0 to a4 registers passed to the</span>
+</span><span id="__span-2-61"><a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a><span class="cm">     * firmware are parameters to this function.</span>
+</span><span id="__span-2-62"><a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a><span class="cm">     */</span>
+</span><span id="__span-2-63"><a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a><span class="w">    </span><span class="nf">MOV_5R</span><span class="w">  </span><span class="no">s0</span><span class="p">,</span><span class="w"> </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">s1</span><span class="p">,</span><span class="w"> </span><span class="no">a1</span><span class="p">,</span><span class="w"> </span><span class="no">s2</span><span class="p">,</span><span class="w"> </span><span class="no">a2</span><span class="p">,</span><span class="w"> </span><span class="no">s3</span><span class="p">,</span><span class="w"> </span><span class="no">a3</span><span class="p">,</span><span class="w"> </span><span class="no">s4</span><span class="p">,</span><span class="w"> </span><span class="no">a4</span>
+</span><span id="__span-2-64"><a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a><span class="w">    </span><span class="nf">call</span><span class="w">    </span><span class="no">fw_platform_init</span>
+</span><span id="__span-2-65"><a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">zero</span>
+</span><span id="__span-2-66"><a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a><span class="w">    </span><span class="nf">MOV_5R</span><span class="w">  </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">s0</span><span class="p">,</span><span class="w"> </span><span class="no">a1</span><span class="p">,</span><span class="w"> </span><span class="no">s1</span><span class="p">,</span><span class="w"> </span><span class="no">a2</span><span class="p">,</span><span class="w"> </span><span class="no">s2</span><span class="p">,</span><span class="w"> </span><span class="no">a3</span><span class="p">,</span><span class="w"> </span><span class="no">s3</span><span class="p">,</span><span class="w"> </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">s4</span>
+</span><span id="__span-2-67"><a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">a1</span><span class="p">,</span><span class="w"> </span><span class="no">t0</span><span class="p">,</span><span class="w"> </span><span class="no">zero</span>
+</span><span id="__span-2-68"><a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a>
+</span><span id="__span-2-69"><a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a>
+</span><span id="__span-2-70"><a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a><span class="w">    </span><span class="cm">/* </span>
+</span><span id="__span-2-71"><a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a><span class="cm">     * 提前从内存中加载每个hart的相关信息，来自之前的fw_platform_init()</span>
+</span><span id="__span-2-72"><a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a><span class="cm">     * Preload HART details</span>
+</span><span id="__span-2-73"><a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a><span class="cm">     * s7 -&gt; HART Count</span>
+</span><span id="__span-2-74"><a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a><span class="cm">     * s8 -&gt; HART Stack Size</span>
+</span><span id="__span-2-75"><a id="__codelineno-2-75" name="__codelineno-2-75" href="#__codelineno-2-75"></a><span class="cm">     * s9 -&gt; Heap Size</span>
+</span><span id="__span-2-76"><a id="__codelineno-2-76" name="__codelineno-2-76" href="#__codelineno-2-76"></a><span class="cm">     * s10 -&gt; Heap Offset</span>
+</span><span id="__span-2-77"><a id="__codelineno-2-77" name="__codelineno-2-77" href="#__codelineno-2-77"></a><span class="cm">     */</span>
+</span><span id="__span-2-78"><a id="__codelineno-2-78" name="__codelineno-2-78" href="#__codelineno-2-78"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">platform</span>
+</span><span id="__span-2-79"><a id="__codelineno-2-79" name="__codelineno-2-79" href="#__codelineno-2-79"></a><span class="c1">#if __riscv_xlen &gt; 32</span>
+</span><span id="__span-2-80"><a id="__codelineno-2-80" name="__codelineno-2-80" href="#__codelineno-2-80"></a><span class="w">    </span><span class="nf">lwu</span><span class="w"> </span><span class="no">s7</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_PLATFORM_HART_COUNT_OFFSET</span><span class="p">(</span><span class="no">a4</span><span class="p">)</span>
+</span><span id="__span-2-81"><a id="__codelineno-2-81" name="__codelineno-2-81" href="#__codelineno-2-81"></a><span class="w">    </span><span class="nf">lwu</span><span class="w"> </span><span class="no">s8</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_PLATFORM_HART_STACK_SIZE_OFFSET</span><span class="p">(</span><span class="no">a4</span><span class="p">)</span>
+</span><span id="__span-2-82"><a id="__codelineno-2-82" name="__codelineno-2-82" href="#__codelineno-2-82"></a><span class="w">    </span><span class="nf">lwu</span><span class="w"> </span><span class="no">s9</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_PLATFORM_HEAP_SIZE_OFFSET</span><span class="p">(</span><span class="no">a4</span><span class="p">)</span>
+</span><span id="__span-2-83"><a id="__codelineno-2-83" name="__codelineno-2-83" href="#__codelineno-2-83"></a><span class="c1">#else</span>
+</span><span id="__span-2-84"><a id="__codelineno-2-84" name="__codelineno-2-84" href="#__codelineno-2-84"></a><span class="w">    </span><span class="nf">lw</span><span class="w">  </span><span class="no">s7</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_PLATFORM_HART_COUNT_OFFSET</span><span class="p">(</span><span class="no">a4</span><span class="p">)</span>
+</span><span id="__span-2-85"><a id="__codelineno-2-85" name="__codelineno-2-85" href="#__codelineno-2-85"></a><span class="w">    </span><span class="nf">lw</span><span class="w">  </span><span class="no">s8</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_PLATFORM_HART_STACK_SIZE_OFFSET</span><span class="p">(</span><span class="no">a4</span><span class="p">)</span>
+</span><span id="__span-2-86"><a id="__codelineno-2-86" name="__codelineno-2-86" href="#__codelineno-2-86"></a><span class="w">    </span><span class="nf">lw</span><span class="w">  </span><span class="no">s9</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_PLATFORM_HEAP_SIZE_OFFSET</span><span class="p">(</span><span class="no">a4</span><span class="p">)</span>
+</span><span id="__span-2-87"><a id="__codelineno-2-87" name="__codelineno-2-87" href="#__codelineno-2-87"></a><span class="c1">#endif</span>
+</span><span id="__span-2-88"><a id="__codelineno-2-88" name="__codelineno-2-88" href="#__codelineno-2-88"></a>
+</span><span id="__span-2-89"><a id="__codelineno-2-89" name="__codelineno-2-89" href="#__codelineno-2-89"></a><span class="w">    </span><span class="cm">/*  接下来为每个核分配各自的堆栈等</span>
+</span><span id="__span-2-90"><a id="__codelineno-2-90" name="__codelineno-2-90" href="#__codelineno-2-90"></a><span class="cm">     *  一系列初始化，并调用fw_options()函数</span>
+</span><span id="__span-2-91"><a id="__codelineno-2-91" name="__codelineno-2-91" href="#__codelineno-2-91"></a><span class="cm">     */</span>
+</span><span id="__span-2-92"><a id="__codelineno-2-92" name="__codelineno-2-92" href="#__codelineno-2-92"></a><span class="w">    </span><span class="cm">/* Setup scratch space for all the HARTs*/</span>
+</span><span id="__span-2-93"><a id="__codelineno-2-93" name="__codelineno-2-93" href="#__codelineno-2-93"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">_fw_end</span>
+</span><span id="__span-2-94"><a id="__codelineno-2-94" name="__codelineno-2-94" href="#__codelineno-2-94"></a><span class="w">    </span><span class="nf">mul</span><span class="w"> </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">s7</span><span class="p">,</span><span class="w"> </span><span class="no">s8</span>
+</span><span id="__span-2-95"><a id="__codelineno-2-95" name="__codelineno-2-95" href="#__codelineno-2-95"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">a5</span>
+</span><span id="__span-2-96"><a id="__codelineno-2-96" name="__codelineno-2-96" href="#__codelineno-2-96"></a><span class="w">    </span><span class="cm">/* Setup heap base address */</span>
+</span><span id="__span-2-97"><a id="__codelineno-2-97" name="__codelineno-2-97" href="#__codelineno-2-97"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">s10</span><span class="p">,</span><span class="w"> </span><span class="no">_fw_start</span>
+</span><span id="__span-2-98"><a id="__codelineno-2-98" name="__codelineno-2-98" href="#__codelineno-2-98"></a><span class="w">    </span><span class="nf">sub</span><span class="w"> </span><span class="no">s10</span><span class="p">,</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">s10</span>
+</span><span id="__span-2-99"><a id="__codelineno-2-99" name="__codelineno-2-99" href="#__codelineno-2-99"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">s9</span>
+</span><span id="__span-2-100"><a id="__codelineno-2-100" name="__codelineno-2-100" href="#__codelineno-2-100"></a><span class="w">    </span><span class="cm">/* Keep a copy of tp */</span>
+</span><span id="__span-2-101"><a id="__codelineno-2-101" name="__codelineno-2-101" href="#__codelineno-2-101"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">zero</span>
+</span><span id="__span-2-102"><a id="__codelineno-2-102" name="__codelineno-2-102" href="#__codelineno-2-102"></a><span class="w">    </span><span class="cm">/* Counter */</span>
+</span><span id="__span-2-103"><a id="__codelineno-2-103" name="__codelineno-2-103" href="#__codelineno-2-103"></a><span class="w">    </span><span class="nf">li</span><span class="w">  </span><span class="no">t2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-2-104"><a id="__codelineno-2-104" name="__codelineno-2-104" href="#__codelineno-2-104"></a><span class="w">    </span><span class="cm">/* hartid 0 is mandated by ISA */</span>
+</span><span id="__span-2-105"><a id="__codelineno-2-105" name="__codelineno-2-105" href="#__codelineno-2-105"></a><span class="w">    </span><span class="nf">li</span><span class="w">  </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-2-106"><a id="__codelineno-2-106" name="__codelineno-2-106" href="#__codelineno-2-106"></a><span class="nl">_scratch_init:</span>
+</span><span id="__span-2-107"><a id="__codelineno-2-107" name="__codelineno-2-107" href="#__codelineno-2-107"></a><span class="w">    </span><span class="cm">/*</span>
+</span><span id="__span-2-108"><a id="__codelineno-2-108" name="__codelineno-2-108" href="#__codelineno-2-108"></a><span class="cm">     * The following registers hold values that are computed before</span>
+</span><span id="__span-2-109"><a id="__codelineno-2-109" name="__codelineno-2-109" href="#__codelineno-2-109"></a><span class="cm">     * entering this block, and should remain unchanged.</span>
+</span><span id="__span-2-110"><a id="__codelineno-2-110" name="__codelineno-2-110" href="#__codelineno-2-110"></a><span class="cm">     *</span>
+</span><span id="__span-2-111"><a id="__codelineno-2-111" name="__codelineno-2-111" href="#__codelineno-2-111"></a><span class="cm">     * t3 -&gt; the firmware end address</span>
+</span><span id="__span-2-112"><a id="__codelineno-2-112" name="__codelineno-2-112" href="#__codelineno-2-112"></a><span class="cm">     * s7 -&gt; HART count</span>
+</span><span id="__span-2-113"><a id="__codelineno-2-113" name="__codelineno-2-113" href="#__codelineno-2-113"></a><span class="cm">     * s8 -&gt; HART stack size</span>
+</span><span id="__span-2-114"><a id="__codelineno-2-114" name="__codelineno-2-114" href="#__codelineno-2-114"></a><span class="cm">     * s9 -&gt; Heap Size</span>
+</span><span id="__span-2-115"><a id="__codelineno-2-115" name="__codelineno-2-115" href="#__codelineno-2-115"></a><span class="cm">     * s10 -&gt; Heap Offset</span>
+</span><span id="__span-2-116"><a id="__codelineno-2-116" name="__codelineno-2-116" href="#__codelineno-2-116"></a><span class="cm">     */</span>
+</span><span id="__span-2-117"><a id="__codelineno-2-117" name="__codelineno-2-117" href="#__codelineno-2-117"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">zero</span>
+</span><span id="__span-2-118"><a id="__codelineno-2-118" name="__codelineno-2-118" href="#__codelineno-2-118"></a><span class="w">    </span><span class="nf">sub</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">s9</span>
+</span><span id="__span-2-119"><a id="__codelineno-2-119" name="__codelineno-2-119" href="#__codelineno-2-119"></a><span class="w">    </span><span class="nf">mul</span><span class="w"> </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">s8</span><span class="p">,</span><span class="w"> </span><span class="no">t1</span>
+</span><span id="__span-2-120"><a id="__codelineno-2-120" name="__codelineno-2-120" href="#__codelineno-2-120"></a><span class="w">    </span><span class="nf">sub</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">a5</span>
+</span><span id="__span-2-121"><a id="__codelineno-2-121" name="__codelineno-2-121" href="#__codelineno-2-121"></a><span class="w">    </span><span class="nf">li</span><span class="w">  </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_SCRATCH_SIZE</span>
+</span><span id="__span-2-122"><a id="__codelineno-2-122" name="__codelineno-2-122" href="#__codelineno-2-122"></a><span class="w">    </span><span class="nf">sub</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">a5</span>
+</span><span id="__span-2-123"><a id="__codelineno-2-123" name="__codelineno-2-123" href="#__codelineno-2-123"></a>
+</span><span id="__span-2-124"><a id="__codelineno-2-124" name="__codelineno-2-124" href="#__codelineno-2-124"></a><span class="w">    </span><span class="cm">/* Initialize scratch space */</span>
+</span><span id="__span-2-125"><a id="__codelineno-2-125" name="__codelineno-2-125" href="#__codelineno-2-125"></a><span class="w">    </span><span class="cm">/* Store fw_start and fw_size in scratch space */</span>
+</span><span id="__span-2-126"><a id="__codelineno-2-126" name="__codelineno-2-126" href="#__codelineno-2-126"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">_fw_start</span>
+</span><span id="__span-2-127"><a id="__codelineno-2-127" name="__codelineno-2-127" href="#__codelineno-2-127"></a><span class="w">    </span><span class="nf">sub</span><span class="w"> </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">t3</span><span class="p">,</span><span class="w"> </span><span class="no">a4</span>
+</span><span id="__span-2-128"><a id="__codelineno-2-128" name="__codelineno-2-128" href="#__codelineno-2-128"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_SCRATCH_FW_START_OFFSET</span><span class="p">(</span><span class="no">tp</span><span class="p">)</span>
+</span><span id="__span-2-129"><a id="__codelineno-2-129" name="__codelineno-2-129" href="#__codelineno-2-129"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_SCRATCH_FW_SIZE_OFFSET</span><span class="p">(</span><span class="no">tp</span><span class="p">)</span>
+</span><span id="__span-2-130"><a id="__codelineno-2-130" name="__codelineno-2-130" href="#__codelineno-2-130"></a>
+</span><span id="__span-2-131"><a id="__codelineno-2-131" name="__codelineno-2-131" href="#__codelineno-2-131"></a><span class="w">    </span><span class="cm">/* Store R/W section&#39;s offset in scratch space */</span>
+</span><span id="__span-2-132"><a id="__codelineno-2-132" name="__codelineno-2-132" href="#__codelineno-2-132"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">_fw_rw_start</span>
+</span><span id="__span-2-133"><a id="__codelineno-2-133" name="__codelineno-2-133" href="#__codelineno-2-133"></a><span class="w">    </span><span class="nf">sub</span><span class="w"> </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">a4</span>
+</span><span id="__span-2-134"><a id="__codelineno-2-134" name="__codelineno-2-134" href="#__codelineno-2-134"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_SCRATCH_FW_RW_OFFSET</span><span class="p">(</span><span class="no">tp</span><span class="p">)</span>
+</span><span id="__span-2-135"><a id="__codelineno-2-135" name="__codelineno-2-135" href="#__codelineno-2-135"></a>
+</span><span id="__span-2-136"><a id="__codelineno-2-136" name="__codelineno-2-136" href="#__codelineno-2-136"></a><span class="w">    </span><span class="cm">/* Store fw_heap_offset and fw_heap_size in scratch space */</span>
+</span><span id="__span-2-137"><a id="__codelineno-2-137" name="__codelineno-2-137" href="#__codelineno-2-137"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">s10</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_SCRATCH_FW_HEAP_OFFSET</span><span class="p">(</span><span class="no">tp</span><span class="p">)</span>
+</span><span id="__span-2-138"><a id="__codelineno-2-138" name="__codelineno-2-138" href="#__codelineno-2-138"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">s9</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_SCRATCH_FW_HEAP_SIZE_OFFSET</span><span class="p">(</span><span class="no">tp</span><span class="p">)</span>
+</span><span id="__span-2-139"><a id="__codelineno-2-139" name="__codelineno-2-139" href="#__codelineno-2-139"></a>
+</span><span id="__span-2-140"><a id="__codelineno-2-140" name="__codelineno-2-140" href="#__codelineno-2-140"></a><span class="w">    </span><span class="cm">/* Store next arg1 in scratch space */</span>
+</span><span id="__span-2-141"><a id="__codelineno-2-141" name="__codelineno-2-141" href="#__codelineno-2-141"></a><span class="w">    </span><span class="nf">MOV_3R</span><span class="w">  </span><span class="no">s0</span><span class="p">,</span><span class="w"> </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">s1</span><span class="p">,</span><span class="w"> </span><span class="no">a1</span><span class="p">,</span><span class="w"> </span><span class="no">s2</span><span class="p">,</span><span class="w"> </span><span class="no">a2</span>
+</span><span id="__span-2-142"><a id="__codelineno-2-142" name="__codelineno-2-142" href="#__codelineno-2-142"></a><span class="w">    </span><span class="nf">call</span><span class="w">    </span><span class="no">fw_next_arg1</span>
+</span><span id="__span-2-143"><a id="__codelineno-2-143" name="__codelineno-2-143" href="#__codelineno-2-143"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_SCRATCH_NEXT_ARG1_OFFSET</span><span class="p">(</span><span class="no">tp</span><span class="p">)</span>
+</span><span id="__span-2-144"><a id="__codelineno-2-144" name="__codelineno-2-144" href="#__codelineno-2-144"></a><span class="w">    </span><span class="nf">MOV_3R</span><span class="w">  </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">s0</span><span class="p">,</span><span class="w"> </span><span class="no">a1</span><span class="p">,</span><span class="w"> </span><span class="no">s1</span><span class="p">,</span><span class="w"> </span><span class="no">a2</span><span class="p">,</span><span class="w"> </span><span class="no">s2</span>
+</span><span id="__span-2-145"><a id="__codelineno-2-145" name="__codelineno-2-145" href="#__codelineno-2-145"></a><span class="w">    </span><span class="cm">/* Store next address in scratch space */</span>
+</span><span id="__span-2-146"><a id="__codelineno-2-146" name="__codelineno-2-146" href="#__codelineno-2-146"></a><span class="w">    </span><span class="nf">MOV_3R</span><span class="w">  </span><span class="no">s0</span><span class="p">,</span><span class="w"> </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">s1</span><span class="p">,</span><span class="w"> </span><span class="no">a1</span><span class="p">,</span><span class="w"> </span><span class="no">s2</span><span class="p">,</span><span class="w"> </span><span class="no">a2</span>
+</span><span id="__span-2-147"><a id="__codelineno-2-147" name="__codelineno-2-147" href="#__codelineno-2-147"></a><span class="w">    </span><span class="nf">call</span><span class="w">    </span><span class="no">fw_next_addr</span>
+</span><span id="__span-2-148"><a id="__codelineno-2-148" name="__codelineno-2-148" href="#__codelineno-2-148"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_SCRATCH_NEXT_ADDR_OFFSET</span><span class="p">(</span><span class="no">tp</span><span class="p">)</span>
+</span><span id="__span-2-149"><a id="__codelineno-2-149" name="__codelineno-2-149" href="#__codelineno-2-149"></a><span class="w">    </span><span class="nf">MOV_3R</span><span class="w">  </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">s0</span><span class="p">,</span><span class="w"> </span><span class="no">a1</span><span class="p">,</span><span class="w"> </span><span class="no">s1</span><span class="p">,</span><span class="w"> </span><span class="no">a2</span><span class="p">,</span><span class="w"> </span><span class="no">s2</span>
+</span><span id="__span-2-150"><a id="__codelineno-2-150" name="__codelineno-2-150" href="#__codelineno-2-150"></a><span class="w">    </span><span class="cm">/* Store next mode in scratch space */</span>
+</span><span id="__span-2-151"><a id="__codelineno-2-151" name="__codelineno-2-151" href="#__codelineno-2-151"></a><span class="w">    </span><span class="nf">MOV_3R</span><span class="w">  </span><span class="no">s0</span><span class="p">,</span><span class="w"> </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">s1</span><span class="p">,</span><span class="w"> </span><span class="no">a1</span><span class="p">,</span><span class="w"> </span><span class="no">s2</span><span class="p">,</span><span class="w"> </span><span class="no">a2</span>
+</span><span id="__span-2-152"><a id="__codelineno-2-152" name="__codelineno-2-152" href="#__codelineno-2-152"></a><span class="w">    </span><span class="nf">call</span><span class="w">    </span><span class="no">fw_next_mode</span>
+</span><span id="__span-2-153"><a id="__codelineno-2-153" name="__codelineno-2-153" href="#__codelineno-2-153"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_SCRATCH_NEXT_MODE_OFFSET</span><span class="p">(</span><span class="no">tp</span><span class="p">)</span>
+</span><span id="__span-2-154"><a id="__codelineno-2-154" name="__codelineno-2-154" href="#__codelineno-2-154"></a><span class="w">    </span><span class="nf">MOV_3R</span><span class="w">  </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">s0</span><span class="p">,</span><span class="w"> </span><span class="no">a1</span><span class="p">,</span><span class="w"> </span><span class="no">s1</span><span class="p">,</span><span class="w"> </span><span class="no">a2</span><span class="p">,</span><span class="w"> </span><span class="no">s2</span>
+</span><span id="__span-2-155"><a id="__codelineno-2-155" name="__codelineno-2-155" href="#__codelineno-2-155"></a><span class="w">    </span><span class="cm">/* Store warm_boot address in scratch space */</span>
+</span><span id="__span-2-156"><a id="__codelineno-2-156" name="__codelineno-2-156" href="#__codelineno-2-156"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">_start_warm</span>
+</span><span id="__span-2-157"><a id="__codelineno-2-157" name="__codelineno-2-157" href="#__codelineno-2-157"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_SCRATCH_WARMBOOT_ADDR_OFFSET</span><span class="p">(</span><span class="no">tp</span><span class="p">)</span>
+</span><span id="__span-2-158"><a id="__codelineno-2-158" name="__codelineno-2-158" href="#__codelineno-2-158"></a><span class="w">    </span><span class="cm">/* Store platform address in scratch space */</span>
+</span><span id="__span-2-159"><a id="__codelineno-2-159" name="__codelineno-2-159" href="#__codelineno-2-159"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">platform</span>
+</span><span id="__span-2-160"><a id="__codelineno-2-160" name="__codelineno-2-160" href="#__codelineno-2-160"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_SCRATCH_PLATFORM_ADDR_OFFSET</span><span class="p">(</span><span class="no">tp</span><span class="p">)</span>
+</span><span id="__span-2-161"><a id="__codelineno-2-161" name="__codelineno-2-161" href="#__codelineno-2-161"></a><span class="w">    </span><span class="cm">/* Store hartid-to-scratch function address in scratch space */</span>
+</span><span id="__span-2-162"><a id="__codelineno-2-162" name="__codelineno-2-162" href="#__codelineno-2-162"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">_hartid_to_scratch</span>
+</span><span id="__span-2-163"><a id="__codelineno-2-163" name="__codelineno-2-163" href="#__codelineno-2-163"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_SCRATCH_HARTID_TO_SCRATCH_OFFSET</span><span class="p">(</span><span class="no">tp</span><span class="p">)</span>
+</span><span id="__span-2-164"><a id="__codelineno-2-164" name="__codelineno-2-164" href="#__codelineno-2-164"></a><span class="w">    </span><span class="cm">/* Store trap-exit function address in scratch space */</span>
+</span><span id="__span-2-165"><a id="__codelineno-2-165" name="__codelineno-2-165" href="#__codelineno-2-165"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">_trap_exit</span>
+</span><span id="__span-2-166"><a id="__codelineno-2-166" name="__codelineno-2-166" href="#__codelineno-2-166"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_SCRATCH_TRAP_EXIT_OFFSET</span><span class="p">(</span><span class="no">tp</span><span class="p">)</span>
+</span><span id="__span-2-167"><a id="__codelineno-2-167" name="__codelineno-2-167" href="#__codelineno-2-167"></a><span class="w">    </span><span class="cm">/* Clear tmp0 in scratch space */</span>
+</span><span id="__span-2-168"><a id="__codelineno-2-168" name="__codelineno-2-168" href="#__codelineno-2-168"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">zero</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_SCRATCH_TMP0_OFFSET</span><span class="p">(</span><span class="no">tp</span><span class="p">)</span>
+</span><span id="__span-2-169"><a id="__codelineno-2-169" name="__codelineno-2-169" href="#__codelineno-2-169"></a><span class="w">    </span><span class="cm">/* Store firmware options in scratch space */</span>
+</span><span id="__span-2-170"><a id="__codelineno-2-170" name="__codelineno-2-170" href="#__codelineno-2-170"></a><span class="w">    </span><span class="nf">MOV_3R</span><span class="w">  </span><span class="no">s0</span><span class="p">,</span><span class="w"> </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">s1</span><span class="p">,</span><span class="w"> </span><span class="no">a1</span><span class="p">,</span><span class="w"> </span><span class="no">s2</span><span class="p">,</span><span class="w"> </span><span class="no">a2</span>
+</span><span id="__span-2-171"><a id="__codelineno-2-171" name="__codelineno-2-171" href="#__codelineno-2-171"></a><span class="c1">#ifdef FW_OPTIONS</span>
+</span><span id="__span-2-172"><a id="__codelineno-2-172" name="__codelineno-2-172" href="#__codelineno-2-172"></a><span class="w">    </span><span class="nf">li</span><span class="w">  </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">FW_OPTIONS</span>
+</span><span id="__span-2-173"><a id="__codelineno-2-173" name="__codelineno-2-173" href="#__codelineno-2-173"></a><span class="c1">#else</span>
+</span><span id="__span-2-174"><a id="__codelineno-2-174" name="__codelineno-2-174" href="#__codelineno-2-174"></a><span class="w">    </span><span class="nf">call</span><span class="w">    </span><span class="no">fw_options</span>
+</span><span id="__span-2-175"><a id="__codelineno-2-175" name="__codelineno-2-175" href="#__codelineno-2-175"></a><span class="c1">#endif</span>
+</span><span id="__span-2-176"><a id="__codelineno-2-176" name="__codelineno-2-176" href="#__codelineno-2-176"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_SCRATCH_OPTIONS_OFFSET</span><span class="p">(</span><span class="no">tp</span><span class="p">)</span>
+</span><span id="__span-2-177"><a id="__codelineno-2-177" name="__codelineno-2-177" href="#__codelineno-2-177"></a><span class="w">    </span><span class="nf">MOV_3R</span><span class="w">  </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">s0</span><span class="p">,</span><span class="w"> </span><span class="no">a1</span><span class="p">,</span><span class="w"> </span><span class="no">s1</span><span class="p">,</span><span class="w"> </span><span class="no">a2</span><span class="p">,</span><span class="w"> </span><span class="no">s2</span>
+</span><span id="__span-2-178"><a id="__codelineno-2-178" name="__codelineno-2-178" href="#__codelineno-2-178"></a><span class="w">    </span><span class="cm">/* Move to next scratch space */</span>
+</span><span id="__span-2-179"><a id="__codelineno-2-179" name="__codelineno-2-179" href="#__codelineno-2-179"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">t2</span>
+</span><span id="__span-2-180"><a id="__codelineno-2-180" name="__codelineno-2-180" href="#__codelineno-2-180"></a><span class="w">    </span><span class="nf">blt</span><span class="w"> </span><span class="no">t1</span><span class="p">,</span><span class="w"> </span><span class="no">s7</span><span class="p">,</span><span class="w"> </span><span class="no">_scratch_init</span>
+</span><span id="__span-2-181"><a id="__codelineno-2-181" name="__codelineno-2-181" href="#__codelineno-2-181"></a>
+</span><span id="__span-2-182"><a id="__codelineno-2-182" name="__codelineno-2-182" href="#__codelineno-2-182"></a><span class="w">    </span><span class="cm">/* 接下来是FDT设备树的重定位，与固件的重定位相似，此处省略*/</span>
+</span></code></pre></div>
+<p>在完成所有的基本初始化、以及固件和设备树的重定位后，进行boot的hart以及等待中的harts都进入下一个阶段，<a id="otherharts"></a>_start_warm, 完成这个阶段后就进入了C编写的高级语言世界，不用看汇编了www。</p>
 <p>这个阶段主要做了几件十分重要的事情，包括：</p>
 <ul>
 <li>复位所有GPR；</li>
@@ -474,139 +828,161 @@ _scratch_init:
 <li>设置正式的trap地址（十分重要！！！），决定后续的异常处理（对32位处理器的Hypervisor扩展做了处理）；</li>
 <li>最后跳转至sbi_init()函数进行下一步的初始化。</li>
 </ul>
-<pre><code class="language-assembly">_start_warm:
-    /* Reset all registers for non-boot HARTs */
-    li  ra, 0
-    call    _reset_regs
-
-    /* Disable all interrupts */
-    csrw    CSR_MIE, zero
-
-    /* Find HART count and HART stack size */
-    lla a4, platform
-#if __riscv_xlen == 64
-    lwu s7, SBI_PLATFORM_HART_COUNT_OFFSET(a4)
-    lwu s8, SBI_PLATFORM_HART_STACK_SIZE_OFFSET(a4)
-#else
-    lw  s7, SBI_PLATFORM_HART_COUNT_OFFSET(a4)
-    lw  s8, SBI_PLATFORM_HART_STACK_SIZE_OFFSET(a4)
-#endif
-    REG_L   s9, SBI_PLATFORM_HART_INDEX2ID_OFFSET(a4)
-
-    /* Find HART id */
-    csrr    s6, CSR_MHARTID
-
-    /* Find HART index */
-    beqz    s9, 3f
-    li  a4, 0
-1:
-#if __riscv_xlen == 64
-    lwu a5, (s9)
-#else
-    lw  a5, (s9)
-#endif
-    beq a5, s6, 2f
-    add s9, s9, 4
-    add a4, a4, 1
-    blt a4, s7, 1b
-2:  add s6, a4, zero
-3:  bge s6, s7, _start_hang
-
-    /* Find the scratch space based on HART index */
-    lla tp, _fw_end
-    mul a5, s7, s8
-    add tp, tp, a5
-    mul a5, s8, s6
-    sub tp, tp, a5
-    li  a5, SBI_SCRATCH_SIZE
-    sub tp, tp, a5
-
-    /* update the mscratch */
-    csrw    CSR_MSCRATCH, tp
-
-    /* Setup stack */
-    add sp, tp, zero
-
-    /* Setup trap handler */
-    lla a4, _trap_handler
-#if __riscv_xlen == 32
-    csrr    a5, CSR_MISA
-    srli    a5, a5, ('H' - 'A')
-    andi    a5, a5, 0x1
-    beq a5, zero, _skip_trap_handler_rv32_hyp
-    lla a4, _trap_handler_rv32_hyp
-_skip_trap_handler_rv32_hyp:
-#endif
-    csrw    CSR_MTVEC, a4
-
-#if __riscv_xlen == 32
-    /* Override trap exit for H-extension */
-    csrr    a5, CSR_MISA
-    srli    a5, a5, ('H' - 'A')
-    andi    a5, a5, 0x1
-    beq a5, zero, _skip_trap_exit_rv32_hyp
-    lla a4, _trap_exit_rv32_hyp
-    csrr    a5, CSR_MSCRATCH
-    REG_S   a4, SBI_SCRATCH_TRAP_EXIT_OFFSET(a5)
-_skip_trap_exit_rv32_hyp:
-#endif
-
-    /* Initialize SBI runtime */
-    csrr    a0, CSR_MSCRATCH
-    call    sbi_init
-
-    /* We don't expect to reach here hence just hang */
-    j   _start_hang
-</code></pre>
+<div class="language-asm highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nl">_start_warm:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="cm">/* Reset all registers for non-boot HARTs */</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nf">li</span><span class="w">  </span><span class="no">ra</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nf">call</span><span class="w">    </span><span class="no">_reset_regs</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="cm">/* Disable all interrupts */</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nf">csrw</span><span class="w">    </span><span class="no">CSR_MIE</span><span class="p">,</span><span class="w"> </span><span class="no">zero</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="cm">/* Find HART count and HART stack size */</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">platform</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1">#if __riscv_xlen == 64</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="nf">lwu</span><span class="w"> </span><span class="no">s7</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_PLATFORM_HART_COUNT_OFFSET</span><span class="p">(</span><span class="no">a4</span><span class="p">)</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="nf">lwu</span><span class="w"> </span><span class="no">s8</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_PLATFORM_HART_STACK_SIZE_OFFSET</span><span class="p">(</span><span class="no">a4</span><span class="p">)</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="c1">#else</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="nf">lw</span><span class="w">  </span><span class="no">s7</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_PLATFORM_HART_COUNT_OFFSET</span><span class="p">(</span><span class="no">a4</span><span class="p">)</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="nf">lw</span><span class="w">  </span><span class="no">s8</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_PLATFORM_HART_STACK_SIZE_OFFSET</span><span class="p">(</span><span class="no">a4</span><span class="p">)</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="c1">#endif</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="nf">REG_L</span><span class="w">   </span><span class="no">s9</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_PLATFORM_HART_INDEX2ID_OFFSET</span><span class="p">(</span><span class="no">a4</span><span class="p">)</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">    </span><span class="cm">/* Find HART id */</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">    </span><span class="nf">csrr</span><span class="w">    </span><span class="no">s6</span><span class="p">,</span><span class="w"> </span><span class="no">CSR_MHARTID</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">    </span><span class="cm">/* Find HART index */</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">    </span><span class="nf">beqz</span><span class="w">    </span><span class="no">s9</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="no">f</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">    </span><span class="nf">li</span><span class="w">  </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="err">1:</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="c1">#if __riscv_xlen == 64</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">    </span><span class="nf">lwu</span><span class="w"> </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="no">s9</span><span class="p">)</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="c1">#else</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">    </span><span class="nf">lw</span><span class="w">  </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="no">s9</span><span class="p">)</span>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="c1">#endif</span>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">    </span><span class="nf">beq</span><span class="w"> </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">s6</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="no">f</span>
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">s9</span><span class="p">,</span><span class="w"> </span><span class="no">s9</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="w">    </span><span class="nf">blt</span><span class="w"> </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">s7</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="no">b</span>
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="err">2:</span><span class="w">  </span><span class="nf">add</span><span class="w"> </span><span class="no">s6</span><span class="p">,</span><span class="w"> </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">zero</span>
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="err">3:</span><span class="w">  </span><span class="nf">bge</span><span class="w"> </span><span class="no">s6</span><span class="p">,</span><span class="w"> </span><span class="no">s7</span><span class="p">,</span><span class="w"> </span><span class="no">_start_hang</span>
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="w">    </span><span class="cm">/* Find the scratch space based on HART index */</span>
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">_fw_end</span>
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="w">    </span><span class="nf">mul</span><span class="w"> </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">s7</span><span class="p">,</span><span class="w"> </span><span class="no">s8</span>
+</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">a5</span>
+</span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a><span class="w">    </span><span class="nf">mul</span><span class="w"> </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">s8</span><span class="p">,</span><span class="w"> </span><span class="no">s6</span>
+</span><span id="__span-3-44"><a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a><span class="w">    </span><span class="nf">sub</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">a5</span>
+</span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a><span class="w">    </span><span class="nf">li</span><span class="w">  </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_SCRATCH_SIZE</span>
+</span><span id="__span-3-46"><a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a><span class="w">    </span><span class="nf">sub</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">a5</span>
+</span><span id="__span-3-47"><a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>
+</span><span id="__span-3-48"><a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a><span class="w">    </span><span class="cm">/* update the mscratch */</span>
+</span><span id="__span-3-49"><a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a><span class="w">    </span><span class="nf">csrw</span><span class="w">    </span><span class="no">CSR_MSCRATCH</span><span class="p">,</span><span class="w"> </span><span class="no">tp</span>
+</span><span id="__span-3-50"><a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a>
+</span><span id="__span-3-51"><a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a><span class="w">    </span><span class="cm">/* Setup stack */</span>
+</span><span id="__span-3-52"><a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">sp</span><span class="p">,</span><span class="w"> </span><span class="no">tp</span><span class="p">,</span><span class="w"> </span><span class="no">zero</span>
+</span><span id="__span-3-53"><a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a>
+</span><span id="__span-3-54"><a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a><span class="w">    </span><span class="cm">/* Setup trap handler */</span>
+</span><span id="__span-3-55"><a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">_trap_handler</span>
+</span><span id="__span-3-56"><a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a><span class="c1">#if __riscv_xlen == 32</span>
+</span><span id="__span-3-57"><a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a><span class="w">    </span><span class="nf">csrr</span><span class="w">    </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">CSR_MISA</span>
+</span><span id="__span-3-58"><a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a><span class="w">    </span><span class="nf">srli</span><span class="w">    </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="err">&#39;</span><span class="no">H</span><span class="err">&#39;</span><span class="w"> </span><span class="p">-</span><span class="w"> </span><span class="err">&#39;</span><span class="no">A</span><span class="err">&#39;</span><span class="p">)</span>
+</span><span id="__span-3-59"><a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a><span class="w">    </span><span class="nf">andi</span><span class="w">    </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="mi">0x1</span>
+</span><span id="__span-3-60"><a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a><span class="w">    </span><span class="nf">beq</span><span class="w"> </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">zero</span><span class="p">,</span><span class="w"> </span><span class="no">_skip_trap_handler_rv32_hyp</span>
+</span><span id="__span-3-61"><a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">_trap_handler_rv32_hyp</span>
+</span><span id="__span-3-62"><a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a><span class="nl">_skip_trap_handler_rv32_hyp:</span>
+</span><span id="__span-3-63"><a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a><span class="c1">#endif</span>
+</span><span id="__span-3-64"><a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a><span class="w">    </span><span class="nf">csrw</span><span class="w">    </span><span class="no">CSR_MTVEC</span><span class="p">,</span><span class="w"> </span><span class="no">a4</span>
+</span><span id="__span-3-65"><a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a>
+</span><span id="__span-3-66"><a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a><span class="c1">#if __riscv_xlen == 32</span>
+</span><span id="__span-3-67"><a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a><span class="w">    </span><span class="cm">/* Override trap exit for H-extension */</span>
+</span><span id="__span-3-68"><a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a><span class="w">    </span><span class="nf">csrr</span><span class="w">    </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">CSR_MISA</span>
+</span><span id="__span-3-69"><a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a><span class="w">    </span><span class="nf">srli</span><span class="w">    </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="err">&#39;</span><span class="no">H</span><span class="err">&#39;</span><span class="w"> </span><span class="p">-</span><span class="w"> </span><span class="err">&#39;</span><span class="no">A</span><span class="err">&#39;</span><span class="p">)</span>
+</span><span id="__span-3-70"><a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a><span class="w">    </span><span class="nf">andi</span><span class="w">    </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="mi">0x1</span>
+</span><span id="__span-3-71"><a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a><span class="w">    </span><span class="nf">beq</span><span class="w"> </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">zero</span><span class="p">,</span><span class="w"> </span><span class="no">_skip_trap_exit_rv32_hyp</span>
+</span><span id="__span-3-72"><a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a><span class="w">    </span><span class="nf">lla</span><span class="w"> </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">_trap_exit_rv32_hyp</span>
+</span><span id="__span-3-73"><a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a><span class="w">    </span><span class="nf">csrr</span><span class="w">    </span><span class="no">a5</span><span class="p">,</span><span class="w"> </span><span class="no">CSR_MSCRATCH</span>
+</span><span id="__span-3-74"><a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a><span class="w">    </span><span class="nf">REG_S</span><span class="w">   </span><span class="no">a4</span><span class="p">,</span><span class="w"> </span><span class="no">SBI_SCRATCH_TRAP_EXIT_OFFSET</span><span class="p">(</span><span class="no">a5</span><span class="p">)</span>
+</span><span id="__span-3-75"><a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a><span class="nl">_skip_trap_exit_rv32_hyp:</span>
+</span><span id="__span-3-76"><a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a><span class="c1">#endif</span>
+</span><span id="__span-3-77"><a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a>
+</span><span id="__span-3-78"><a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a><span class="w">    </span><span class="cm">/* Initialize SBI runtime */</span>
+</span><span id="__span-3-79"><a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a><span class="w">    </span><span class="nf">csrr</span><span class="w">    </span><span class="no">a0</span><span class="p">,</span><span class="w"> </span><span class="no">CSR_MSCRATCH</span>
+</span><span id="__span-3-80"><a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a><span class="w">    </span><span class="nf">call</span><span class="w">    </span><span class="no">sbi_init</span>
+</span><span id="__span-3-81"><a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a>
+</span><span id="__span-3-82"><a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a><span class="w">    </span><span class="cm">/* We don&#39;t expect to reach here hence just hang */</span>
+</span><span id="__span-3-83"><a id="__codelineno-3-83" name="__codelineno-3-83" href="#__codelineno-3-83"></a><span class="w">    </span><span class="nf">j</span><span class="w">   </span><span class="no">_start_hang</span>
+</span></code></pre></div>
 <h3 id="sbi_initc">sbi_init.c</h3>
-<p>​   在这里完成一系列初始化后，通过<code>sbi_hart_switch_mode()</code>函数跳转到下一boot阶段，并设置好机器状态（S、U）。</p>
-<p>​   具体可以阅读源代码，C语言相对较为简单，以后有时间再补充吧</p>
+<div class="language-text highlight"><pre><span></span><code>在这里完成一系列初始化后，通过`sbi_hart_switch_mode()`函数跳转到下一boot阶段，并设置好机器状态（S、U）。
+
+具体可以阅读源代码，C语言相对较为简单，以后有时间再补充吧
+</code></pre></div>
+<ol>
+<li>sdsad</li>
+<li>sdas</li>
+<li>dsadas</li>
+</ol>
 <h2 id="_1">附录</h2>
-<p><a id="amo">[1]</a>. 原子指令：此类指令用于从<a href="https://so.csdn.net/so/search?q=存储器&amp;spm=1001.2101.3001.7020">存储器</a>（地址为 rs1 寄存器的值指定）中读出一个数据，存放至 rd 寄存器中，并且将读出的数据与 rs2 寄存器的值进行计算，再将计算后的结果写回存储器（存储器写回地址与读出地址相同）。</p>
+<p>[1]<a id="amo"></a>. 原子指令：此类指令用于从<a href="https://so.csdn.net/so/search?q=存储器&amp;spm=1001.2101.3001.7020">存储器</a>（地址为 rs1 寄存器的值指定）中读出一个数据，存放至 rd 寄存器中，并且将读出的数据与 rs2 寄存器的值进行计算，再将计算后的结果写回存储器（存储器写回地址与读出地址相同）。</p>
 <p><img alt="image-20240120201055886" src="../OpenSBI.assets/image-20240120201055886.png" /></p>
 <p>[2]. 部分内容参考：https://blog.csdn.net/dai_xiangjun/article/details/131815433</p>
-              
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
             </div>
-          </div>
-          <footer>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../../infos/about/" class="btn btn-neutral float-right" title="About">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
       
     </div>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-    
   </div>
-
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.c011b7c0.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.7389ff0e.min.js"></script>
       
+        <script src="../../javascripts/mathjax.js"></script>
       
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
-        <span style="margin-left: 15px"><a href="../../infos/about/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
-    </span>
-</div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../search/main.js" defer></script>
-
-</body>
+    
+  </body>
 </html>
