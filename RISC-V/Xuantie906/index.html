@@ -61,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#idu" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -299,6 +304,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    C906
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -308,6 +324,56 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#idu" class="md-nav__link">
+    <span class="md-ellipsis">
+      IDU
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rtu" class="md-nav__link">
+    <span class="md-ellipsis">
+      RTU
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RTU">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.流水线冲刷
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -359,6 +425,47 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#idu" class="md-nav__link">
+    <span class="md-ellipsis">
+      IDU
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rtu" class="md-nav__link">
+    <span class="md-ellipsis">
+      RTU
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RTU">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.流水线冲刷
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -374,7 +481,12 @@
 
   <h1>C906</h1>
 
-
+<h2 id="idu">IDU</h2>
+<p>取指单元与译码单元通过<code>ifu_idu_id_inst_vld</code>这两个信号进行握手<code>idu_ifu_id_stall</code>，实现IDU对IFU的反压，只有前高后低的时候才有指令进入译码单元，具体波形见下图：</p>
+<p><img alt="image-20240121231258584" src="../Xuantie906.assets/image-20240121231258584.png" /></p>
+<h2 id="rtu">RTU</h2>
+<h3 id="1">1.流水线冲刷</h3>
+<p>​   退休单元使用<code>rtu_xx_flush_fe(XX可以是ifu、idu等)</code>以及<code>rtu_ifu_chgflw_vld</code>和<code>rtu_ifu_chgflw_pc[39:0]</code>来完成流水线的冲刷和更改指令执行流。</p>
 
 
 
