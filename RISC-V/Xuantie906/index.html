@@ -482,8 +482,13 @@
   <h1>C906</h1>
 
 <h2 id="idu">IDU</h2>
-<p>取指单元与译码单元通过<code>ifu_idu_id_inst_vld</code>这两个信号进行握手<code>idu_ifu_id_stall</code>，实现IDU对IFU的反压，只有前高后低的时候才有指令进入译码单元，具体波形见下图：</p>
+<ul>
+<li>取指单元与译码单元通过<code>ifu_idu_id_inst_vld</code>这两个信号进行握手<code>idu_ifu_id_stall</code>，实现IDU对IFU的反压，只有前高后低的时候才有指令进入译码单元，具体波形见下图：</li>
+</ul>
 <p><img alt="image-20240121231258584" src="../Xuantie906.assets/image-20240121231258584.png" /></p>
+<ul>
+<li>整形指令（除改变处理器状态的指令）均进入IU单元处理，而浮点以及向量指令在idu处理完后还需进入viu进行二级解码处理，再进入下面的向量（浮点）执行单元执行。</li>
+</ul>
 <h2 id="rtu">RTU</h2>
 <h3 id="1">1.流水线冲刷</h3>
 <p>​   退休单元使用<code>rtu_xx_flush_fe(XX可以是ifu、idu等)</code>以及<code>rtu_ifu_chgflw_vld</code>和<code>rtu_ifu_chgflw_pc[39:0]</code>来完成流水线的冲刷和更改指令执行流。</p>
