@@ -12,7 +12,7 @@
         <link rel="prev" href="../../Linux/OpenSBI/">
       
       
-        <link rel="next" href="../../infos/about/">
+        <link rel="next" href="../Extending%20RISC-V/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -345,6 +345,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="IDU">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aq_idu_id_ctrlv" class="md-nav__link">
+    <span class="md-ellipsis">
+      aq_idu_id_ctrl.v
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decd" class="md-nav__link">
+    <span class="md-ellipsis">
+      decd
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -375,6 +399,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Extending%20RISC-V/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Extending RISC-V
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -438,6 +483,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="IDU">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aq_idu_id_ctrlv" class="md-nav__link">
+    <span class="md-ellipsis">
+      aq_idu_id_ctrl.v
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decd" class="md-nav__link">
+    <span class="md-ellipsis">
+      decd
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -489,9 +558,177 @@
 <ul>
 <li>整形指令（除改变处理器状态的指令）均进入IU单元处理，而浮点以及向量指令在idu处理完后还需进入viu进行二级解码处理，再进入下面的向量（浮点）执行单元执行。</li>
 </ul>
+<h3 id="aq_idu_id_ctrlv">aq_idu_id_ctrl.v</h3>
+<p>主要完成以下任務：</p>
+<ul>
+<li>指令发射时的write back entry创建使能（对没错，这里只给出使能信号，而具体的表项内容由idu_dp模块负责，抽象）</li>
+<li>向ifu发出stall信号</li>
+<li>stall由以下情况组成<ul>
+<li>dependence：raw与waw</li>
+<li>cp0（debug相关）</li>
+<li>对于vec指令需等待vset指令写回</li>
+<li>以及ex1部分的stall（个人理解ex1即使在idu中，但其也是指令进入idu后的第二个周期，在这个周期若指令成功发射，则已经开始执行，因此叫做ex1）：</li>
+<li>eu_full：即功能单元饱和</li>
+<li>issue_stall:？？？</li>
+<li>internal_stall:来自bju和lsu？？？</li>
+</ul>
+</li>
+<li>eu选择：对发生异常的指令发给cp0，对向量、浮点指令做处理（仅保留lsu部分）</li>
+<li>流水级寄存器：这里由两级流水线，分别是属于idu的一级和执行指令的第一级（ex1）</li>
+<li>选择对应的执行单元发出选择信号</li>
+<li>to HPCP</li>
+</ul>
+<h3 id="decd">decd</h3>
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_FUNC</span><span class="o">:</span><span class="no">`IDU_FUNC</span><span class="o">-</span><span class="no">`FUNC_WIDTH</span><span class="o">+</span><span class="mh">1</span><span class="p">]</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_func</span><span class="p">[</span><span class="no">`FUNC_WIDTH</span><span class="o">-</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">];</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_EU</span><span class="o">:</span><span class="no">`IDU_EU</span><span class="o">-</span><span class="no">`EU_WIDTH</span><span class="o">+</span><span class="mh">1</span><span class="p">]</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_eu</span><span class="p">[</span><span class="no">`EU_WIDTH</span><span class="o">-</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">];</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_OPCODE</span><span class="o">:</span><span class="no">`IDU_OPCODE</span><span class="o">-</span><span class="mh">31</span><span class="p">]</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_opcode</span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">];</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_VEC_SPLIT_TYPE</span><span class="o">:</span><span class="no">`IDU_VEC_SPLIT_TYPE</span><span class="o">-</span><span class="mh">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_vec_split_type</span><span class="p">[</span><span class="mh">3</span><span class="o">:</span><span class="mh">0</span><span class="p">];</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_ILLEGAL</span><span class="p">]</span><span class="w">                              </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_illegal</span><span class="p">;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_LENGTH</span><span class="p">]</span><span class="w">                               </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_length</span><span class="p">;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRC2_IMM</span><span class="o">:</span><span class="no">`IDU_SRC2_IMM</span><span class="o">-</span><span class="mh">63</span><span class="p">]</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_src2_imm</span><span class="p">[</span><span class="mh">63</span><span class="o">:</span><span class="mh">0</span><span class="p">];</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRC1_IMM</span><span class="o">:</span><span class="no">`IDU_SRC1_IMM</span><span class="o">-</span><span class="mh">63</span><span class="p">]</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_src1_imm</span><span class="p">[</span><span class="mh">63</span><span class="o">:</span><span class="mh">0</span><span class="p">];</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRC2_IMM_VLD</span><span class="p">]</span><span class="w">                         </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_src2_imm_vld</span><span class="p">;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRC1_IMM_VLD</span><span class="p">]</span><span class="w">                         </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_src1_imm_vld</span><span class="p">;</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_DSTV_REG</span><span class="o">:</span><span class="no">`IDU_DSTV_REG</span><span class="o">-</span><span class="mh">4</span><span class="p">]</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_dstv_reg</span><span class="p">[</span><span class="mh">4</span><span class="o">:</span><span class="mh">0</span><span class="p">];</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRCV2_REG</span><span class="o">:</span><span class="no">`IDU_SRCV2_REG</span><span class="o">-</span><span class="mh">4</span><span class="p">]</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_srcv2_reg</span><span class="p">[</span><span class="mh">4</span><span class="o">:</span><span class="mh">0</span><span class="p">];</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRCV1_REG</span><span class="o">:</span><span class="no">`IDU_SRCV1_REG</span><span class="o">-</span><span class="mh">4</span><span class="p">]</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_srcv1_reg</span><span class="p">[</span><span class="mh">4</span><span class="o">:</span><span class="mh">0</span><span class="p">];</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRCV0_REG</span><span class="o">:</span><span class="no">`IDU_SRCV0_REG</span><span class="o">-</span><span class="mh">4</span><span class="p">]</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_srcv0_reg</span><span class="p">[</span><span class="mh">4</span><span class="o">:</span><span class="mh">0</span><span class="p">];</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_DST1_REG</span><span class="o">:</span><span class="no">`IDU_DST1_REG</span><span class="o">-</span><span class="mh">5</span><span class="p">]</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_dst1_reg</span><span class="p">[</span><span class="mh">5</span><span class="o">:</span><span class="mh">0</span><span class="p">];</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_DST0_REG</span><span class="o">:</span><span class="no">`IDU_DST0_REG</span><span class="o">-</span><span class="mh">5</span><span class="p">]</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_dst0_reg</span><span class="p">[</span><span class="mh">5</span><span class="o">:</span><span class="mh">0</span><span class="p">];</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRC2_REG</span><span class="o">:</span><span class="no">`IDU_SRC2_REG</span><span class="o">-</span><span class="mh">5</span><span class="p">]</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_src2_reg</span><span class="p">[</span><span class="mh">5</span><span class="o">:</span><span class="mh">0</span><span class="p">];</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRC1_REG</span><span class="o">:</span><span class="no">`IDU_SRC1_REG</span><span class="o">-</span><span class="mh">5</span><span class="p">]</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_src1_reg</span><span class="p">[</span><span class="mh">5</span><span class="o">:</span><span class="mh">0</span><span class="p">];</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRC0_REG</span><span class="o">:</span><span class="no">`IDU_SRC0_REG</span><span class="o">-</span><span class="mh">5</span><span class="p">]</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_src0_reg</span><span class="p">[</span><span class="mh">5</span><span class="o">:</span><span class="mh">0</span><span class="p">];</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_DSTV_LATE_VLD</span><span class="p">]</span><span class="w">                        </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_dstv_late_vld</span><span class="p">;</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_DSTV_VLD</span><span class="p">]</span><span class="w">                             </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_dstv_vld</span><span class="p">;</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRCVM_VLD</span><span class="p">]</span><span class="w">                            </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_srcvm_vld</span><span class="p">;</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRCV2_VLD</span><span class="p">]</span><span class="w">                            </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_srcv2_vld</span><span class="p">;</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRCV1_VLD</span><span class="p">]</span><span class="w">                            </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_srcv1_vld</span><span class="p">;</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRCV0_VLD</span><span class="p">]</span><span class="w">                            </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_srcv0_vld</span><span class="p">;</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_DSTE_VLD</span><span class="p">]</span><span class="w">                             </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_dste_vld</span><span class="p">;</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_DSTF_VLD</span><span class="p">]</span><span class="w">                             </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_dstf_vld</span><span class="p">;</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRCF2_VLD</span><span class="p">]</span><span class="w">                            </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_srcf2_vld</span><span class="p">;</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRCF1_VLD</span><span class="p">]</span><span class="w">                            </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_srcf1_vld</span><span class="p">;</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRCF0_VLD</span><span class="p">]</span><span class="w">                            </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_srcf0_vld</span><span class="p">;</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_DST1_VLD</span><span class="p">]</span><span class="w">                             </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_dst1_vld</span><span class="p">;</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_DST0_VLD</span><span class="p">]</span><span class="w">                             </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_dst0_vld</span><span class="p">;</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRC2_VLD</span><span class="p">]</span><span class="w">                             </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_src2_vld</span><span class="p">;</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRC1_VLD</span><span class="p">]</span><span class="w">                             </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_src1_vld</span><span class="p">;</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">  </span><span class="n">decd_dp_inst_data</span><span class="p">[</span><span class="no">`IDU_SRC0_VLD</span><span class="p">]</span><span class="w">                             </span><span class="o">=</span><span class="w"> </span><span class="n">x_decd_src0_vld</span><span class="p">;</span>
+</span></code></pre></div>
+<ol class="task-list">
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 1. x_decd_func[20-1:0]：指令功能编码</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 2. x_decd_eu[10-1:0]：指令执行单元</p>
+<p><code>x_decd_eu</code>的9，10位代表浮点单元和向量单元的选择，自定义指令时需要注意不要错误设置。</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 3. x_decd_opcode[31:0]：指令自己</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 4. x_decd_vec_split_type[3:0]：向量分裂类型（no use）</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 5. x_decd_illegal：非法指令标志</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 6. x_decd_length：指令长度（16/32）</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 7. x_decd_src2_imm[63:0]：src2立即数</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 8. x_decd_src1_imm[63:0]：src1立即数</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 9. x_decd_src2_imm_vld：src2立即数有效标志</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 10. x_decd_src1_imm_vld：src1立即数有效标志</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 11. x_decd_dstv_reg[4:0]：向量目的寄存器编号</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 12. x_decd_srcv2_reg[4:0]：向量源寄存器2编号</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 13. x_decd_srcv1_reg[4:0]：向量源寄存器1编号</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 14. x_decd_srcv0_reg[4:0]：向量源寄存器0编号</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 15. x_decd_dst1_reg[5:0]：整数目的寄存器1编号</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 16. x_decd_dst0_reg[5:0]：整数目的寄存器0编号</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 17. x_decd_src2_reg[5:0]：整数源寄存器2编号</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 18. x_decd_src1_reg[5:0]：整数源寄存器1编号</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 19. x_decd_src0_reg[5:0]：整数源寄存器0编号</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 20. x_decd_dstv_late_vld：？？？</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 21. x_decd_dstv_vld：向量目的寄存器有效标志</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 22. x_decd_srcvm_vld：？？？</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 23. x_decd_srcv2_vld：向量源寄存器2有效标志</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 24. x_decd_srcv1_vld：向量源寄存器1有效标志</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 25. x_decd_srcv0_vld：向量源寄存器0有效标志</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 26. x_decd_dste_vld：？？？</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 27. x_decd_dstf_vld：？？？</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 28. x_decd_srcf2_vld：浮点源寄存器2有效标志</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 29. x_decd_srcf1_vld：浮点源寄存器1有效标志</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 30. x_decd_srcf0_vld：浮点源寄存器0有效标志</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 31. x_decd_dst1_vld：整数目的寄存器1有效标志</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 32. x_decd_dst0_vld：整数目的寄存器0有效标志</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 33. x_decd_src2_vld：整数源寄存器2有效标志</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 34. x_decd_src1_vld：整数源寄存器1有效标志</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 35. x_decd_src0_vld：整数源寄存器0有效标志</p>
+</li>
+</ol>
 <h2 id="rtu">RTU</h2>
 <h3 id="1">1.流水线冲刷</h3>
 <p>​   退休单元使用<code>rtu_xx_flush_fe(XX可以是ifu、idu等)</code>以及<code>rtu_ifu_chgflw_vld</code>和<code>rtu_ifu_chgflw_pc[39:0]</code>来完成流水线的冲刷和更改指令执行流。</p>
+<p>PS：</p>
+<p>xuantie的代码是真的迷惑，喜欢把一些控制信号全部列到模块接口上，然后丢到下一个模块内部处理，而不是在本模块内部完成处理，比如对于一个写使能信号，明明可以在本地完成stall信号的判断，确定是否拉高，但它偏要用两个信号<code>wen</code>和<code>stall</code>，并在其对应的下一个模块完成判断，这就使得每个模块的接口信号列表过于冗长，成堆的信号只用于表达一个功能的控制，属实难绷，</p>
+<p>各个模块的名字和功能对应混乱，模块功能划分属实逆天</p>
 
 
 

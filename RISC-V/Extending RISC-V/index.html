@@ -1,0 +1,835 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Xuantie906/">
+      
+      
+        <link rel="next" href="../../infos/about/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.4">
+    
+    
+      
+        <title>Extending RISC-V - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto Mono";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-26" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Extending RISC-V
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/OpenSBI/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenSBI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    RISC-V
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            RISC-V
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Xuantie906/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C906
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Extending RISC-V
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Extending RISC-V
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#261" class="md-nav__link">
+    <span class="md-ellipsis">
+      26.1 扩展术语
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="26.1 扩展术语">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      标准 vs. 非标准扩展
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instruction-encoding-spacesprefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      指令编码空间(Instruction Encoding Spaces)和前缀(Prefix)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#greenfield-extension-vs-brownfield-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      绿地扩展(greenfield extension) vs. 棕地扩展(brownfield extension)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-compatible-global-encodings" class="md-nav__link">
+    <span class="md-ellipsis">
+      标准兼容的全局编码(Standard-Compatible Global Encodings)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guaranteed-non-standard-encoding-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      保证的非标准编码空间(Guaranteed Non-Standard Encoding Space)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#262-risc-v" class="md-nav__link">
+    <span class="md-ellipsis">
+      26.2 RISC-V扩展设计理念
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#263-32" class="md-nav__link">
+    <span class="md-ellipsis">
+      26.3 在固定 32 位指令格式内的扩展
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="26.3 在固定 32 位指令格式内的扩展">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#30" class="md-nav__link">
+    <span class="md-ellipsis">
+      可用的 30 位指令编码空间
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    <span class="md-ellipsis">
+      可用的 25 位指令编码空间
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      可用的 22 位指令编码空间
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他空间
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#264-64" class="md-nav__link">
+    <span class="md-ellipsis">
+      26.4 添加64位指令扩展
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infos/about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#261" class="md-nav__link">
+    <span class="md-ellipsis">
+      26.1 扩展术语
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="26.1 扩展术语">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      标准 vs. 非标准扩展
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instruction-encoding-spacesprefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      指令编码空间(Instruction Encoding Spaces)和前缀(Prefix)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#greenfield-extension-vs-brownfield-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      绿地扩展(greenfield extension) vs. 棕地扩展(brownfield extension)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-compatible-global-encodings" class="md-nav__link">
+    <span class="md-ellipsis">
+      标准兼容的全局编码(Standard-Compatible Global Encodings)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guaranteed-non-standard-encoding-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      保证的非标准编码空间(Guaranteed Non-Standard Encoding Space)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#262-risc-v" class="md-nav__link">
+    <span class="md-ellipsis">
+      26.2 RISC-V扩展设计理念
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#263-32" class="md-nav__link">
+    <span class="md-ellipsis">
+      26.3 在固定 32 位指令格式内的扩展
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="26.3 在固定 32 位指令格式内的扩展">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#30" class="md-nav__link">
+    <span class="md-ellipsis">
+      可用的 30 位指令编码空间
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    <span class="md-ellipsis">
+      可用的 25 位指令编码空间
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      可用的 22 位指令编码空间
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他空间
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#264-64" class="md-nav__link">
+    <span class="md-ellipsis">
+      26.4 添加64位指令扩展
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="chapter-26">Chapter 26</h1>
+<p>​       除了支持标准的通用软件开发之外，RISC-V的另一个目标是为更专业的指令集扩展或更定制的加速器提供基础。指令编码空间和可选的变长指令编码被设计成在构建更多定制处理器时更容易利用标准ISA工具链的软件开发工作。例如，其目的是继续为仅使用标准I base的实现提供完整的软件支持，可能还包括许多非标准指令集扩展。</p>
+<p>​       本章描述了基本RISC-V ISA可以扩展的各种方式，以及管理由独立小组开发的指令集扩展的方案。本卷只处理非特权ISA，尽管第二卷中描述的主管级扩展使用了相同的方法和术语</p>
+<h2 id="261">26.1 扩展术语</h2>
+<p>​       这一部分描述了描述RISC-V扩展的一些标准术语。</p>
+<h3 id="vs">标准 vs. 非标准扩展</h3>
+<p>​       任何RISC-V处理器实现都必须支持一个基本整数ISA（RV32I或者RV64I）。另外，一个实现可以支持一个或者多个扩展。我们将扩展分为两大类：<strong>标准</strong>的、<strong>非标准</strong>的。</p>
+<ul>
+<li>一个标准扩展是一个通用的扩展，并不与其它任何标准扩展冲突。当前，在本手册其它章节描述的“MAFDQLCBTPV”扩展，是已经完成或者正在计划的标准扩展。</li>
+<li>一个非标准扩展是一个高度特殊化的扩展，可能与其它标准或者非标准扩展冲突。我们预测随着时间的推移，将研发出大量非标准扩展，可能最后有些非标准扩展将发展成为标准扩展。</li>
+</ul>
+<h3 id="instruction-encoding-spacesprefix">指令编码空间(<em>Instruction Encoding Spaces</em>)和前缀(<em>Prefix</em>)</h3>
+<p>​       一个<strong>指令编码空间</strong>（<em>Instruction Encoding Spaces</em>）是一些指令的位，基本ISA或者ISA扩展就编码在这些位中。RISC-V支持各种指令长度，但是即使对于一个单一的指令长度，也有各种大小的编码空间可供使用。例如，基本ISA被定义为一个30位的编码空间（32位指令的31-2位），而原子性扩展“A”落在一个25位编码空间中（31-7位）。
+​       我们使用术语<strong>前缀</strong>（<em>Prefix</em>）指明一个指令编码空间的右边的位（由于RISC-V是小端的，右边的位保存在存储器地址较小的地方，因此在按顺序取指时，构成了前缀）。标准基本ISA编码的前缀是2位“11”，它处在32位字的1-0位。而标准原子扩展“A”的前缀是7位“0101111”，它处在32位字的6-0位，代表了AMO主要操作码（major opcode）。编码格式有一个奇怪的事情是，在32位指令格式中，用于编码次要操作码（minor opcode）的3位funct3字段，与主要操作码并不连续，但是仍被认为是22位指令空间的前缀的一部分。
+​       虽然一个<strong>指令编码空间</strong>可以是任意大小，但是采用一少部分通用的大小，可以简化将各种独立研发的扩展融入一个整体的编码中。表 10.1给出了RISC-V推荐的指令编码空间大小。</p>
+<p><img alt="" src="../Extending%20RISC-V.assets/image-20240127143621660.png" /></p>
+<p><center> <div style="color:orange;   <br />    display: inline-block;  <br />    color: #999;  <br />    padding: 2px;">表 10.1：建议的标准 RISC-V 指令编码空间大小</div></center></p>
+<h3 id="greenfield-extension-vs-brownfield-extension">绿地扩展(<em>greenfield extension</em>) vs. 棕地扩展(<em>brownfield extension</em>)</h3>
+<p>​       我们使用术语“<strong>绿地扩展</strong>“（<em>greenfield extension</em>）来描述一个扩展开始使用一个新的指令编码空间，因此仅可能在前缀级别产生编码冲突。我们使用术语“<strong>棕地扩展</strong>”（<em>brownfield extension</em>）来描述一个扩展嵌入到一个前面已经定义指令编码空间。一个棕地扩展必须挂靠在某个特定的绿地“父母”编码下，而同一个绿地“父母”编码下，可能有多个棕地扩展（译者注：就像一个儿子，必须有一对父母；而一对父母，可能有多个孩子一样）。例如，基本ISA是一个30位指令空间的绿地编码，而FDQ浮点扩展，都是基本ISA 30位编码空间下的棕地扩展。
+​       注意到我们认为标准A扩展是一个绿地扩展，因为它在整个32位基本指令空间中，定义了一个新的、以前空白的、最左边25位的编码空间，即使它的标准前缀落在基本ISA的30位编码空间中。只改变它的单个7位前缀，就可以将A扩展移动到一个不同的30位编码空间，而仅仅需要考虑在前缀级别的冲突，而不需要考虑编码空间内部的冲突。</p>
+<p><img alt="image-20240127150311947" src="../Extending%20RISC-V.assets/image-20240127150311947.png" /></p>
+<p><center> "表 10.2：标准指令集扩展的二维特性"</center></p>
+<p>​       表 10.2以简单的二维表格方式给出了基本和标准扩展。一个坐标是表明扩展是绿地扩展还是棕地扩展，另一个坐标表明扩展是否增加了体系结构状态。对于绿地扩展，指令编码空间的大小在括号内给出。对于棕地扩展，括号内给出了这个棕地扩展基于的（绿地的或者棕地的）扩展名字。额外的用户级体系结构状态通常意味着管理员级系统的改变或者标准调用约定的改变。
+​       注意到RV64I不被认为是RV32I的一个扩展，而是一个完全不同的基本编码。</p>
+<h3 id="standard-compatible-global-encodings">标准兼容的全局编码(<em>Standard-Compatible Global Encodings</em>)</h3>
+<p>​       一个真正的RISC-V实现的ISA完整或者全局编码（complete or global encoding），必须对其包含的每一个指令编码空间分配一个唯一的、不冲突的前缀。基本指令集和每一个标准扩展都有一个已经分配好的标准前缀，可以确保它们可以在一个全局编码中共存。</p>
+<ul>
+<li>一个<strong>标准兼容的全局编码</strong>，是一个其基本指令集和每一个包括在内的标准扩展都有标准前缀的全局编码。(A standard-compatible global encoding is one where the base and every included standard extension have their standard prefixes.)</li>
+<li>一个标准兼容的全局编码，可以包含与所包含的标准扩展不冲突非标准扩展。(A standard-compatible global encoding can include non-standard extensions that do not conflict with the included standard extensions.)</li>
+<li>如果相关的标准扩展不包含在全局编码中，那么<strong>标准兼容的全局编码</strong>也可以为非标准扩展使用标准前缀。换句话说，如果包含在与标准兼容的全局编码中，则标准扩展必须使用其标准前缀，否则其前缀可以自由地重新分配。(A standard-compatible global encoding can also use standard prefixes for non-standard extensions if the associated standard extensions are not included in the global encoding. In other words, a standard extension must use its standard prefix if included in a standard-compatible global encoding, but otherwise its prefix is free to be reallocated.)</li>
+</ul>
+<p>​       这些约束，可以使得一个通用工具链可以以任何RISC-V标准兼容全局编码的子集的实现作为目标机。(These constraints allow a common toolchain to target the standard subset of any RISC-V standard-compatible global encoding.)</p>
+<h3 id="guaranteed-non-standard-encoding-space">保证的非标准编码空间(<em>Guaranteed Non-Standard Encoding Space</em>)</h3>
+<p>​       为了支持专有自定义扩展的开发，部分编码空间被保证永远不会被标准扩展使用。</p>
+<h2 id="262-risc-v">26.2 RISC-V扩展设计理念</h2>
+<p>​       为了支持大量独立开发的扩展，我们鼓励扩展开发人员在指令编码空间内进行操作，并通过分配唯一的前缀提供工具将这些扩展打包成标准兼容的全局编码。有些扩展更自然地实现为现有扩展的棕地扩展，并将共享分配给父级绿地扩展的任何前缀。标准扩展前缀避免了核心功能编码中的虚假不兼容，同时允许自定义更深奥的扩展。
+​       这种将RISC-V扩展重新打包成不同标准兼容的全局编码的能力可以以多种方式使用。
+​       一个用例是开发高度专业化的自定义加速器，旨在运行来自重要应用领域的内核。他们可能想要删除除基本整数ISA之外的所有扩展，只添加当前任务所需的扩展。基本ISA被设计为对硬件实现有最低要求，并且被编码为仅使用32位指令编码空间的一小部分。</p>
+<p>​       另一个用例是为一种新型的指令集扩展建立一个研究原型。研究人员可能不想花费精力来实现可变长度的指令获取单元，因此希望使用简单的32位固定宽度的指令编码来原型化它们的扩展。但是，这个新扩展可能太大，无法与32位空间中的标准扩展共存。如果研究实验不需要所有的标准扩展，标准兼容的全局编码可能会丢弃未使用的标准扩展，并重用它们的前缀，以将拟议的扩展放置在非标准位置，以简化研究原型的工程。标准工具仍然能够针对基础和任何标准扩展，以减少开发时间。一旦指令集扩展被评估和细化，它就可以被打包到一个更大的变长编码空间中，以避免与所有标准扩展冲突。</p>
+<p>​       下面的部分描述了使用新的指令集扩展开发实现的日益复杂的策略。它们主要用于高度定制、教育或实验体系结构，而不是用于RISC-V ISA开发的主线。</p>
+<h2 id="263-32">26.3 在固定 32 位指令格式内的扩展</h2>
+<p>​       在本节中，我们将讨论为只支持基本固定宽度32位指令格式的实现添加扩展。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>我们预计最简单的固定宽度32位编码将在许多受限的加速器和研究原型中流行。
+</span></code></pre></div>
+<h3 id="30">可用的 30 位指令编码空间</h3>
+<p>​       在标准编码中，3个可用的30位指令编码空间（以00、01、10为前缀）可用于可选的压缩指令扩展。然而，如果不需要压缩指令集扩展，那么这3个30位编码空间就可以自由使用。这将在32位格式中扩大了4倍的可用编码空间。</p>
+<h3 id="25">可用的 25 位指令编码空间</h3>
+<p><img alt="image-20240127160313431" src="../Extending%20RISC-V.assets/image-20240127160313431.png" /></p>
+<p>​       在基本和标准扩展编码中，一个25位指令编码空间对应于一个主要操作码。</p>
+<p>​       有4个主要的操作码专门为自定义扩展保留(表24 - 1)，每个都表示25位的编码空间。其中两个预留给最终在RV128基本编码中使用(将是OP-IMM-64和OP-64)，但可以用于RV32和RV64的标准或非标准扩展。（其中custom-0已被Thead拓展指令集使用）</p>
+<p>​       保留给RV64的两个操作码（OP-IMM-32和OP-32）也可仅用于RV32的标准或者非标准扩展。</p>
+<p>​       如果一个实现不需要浮点，则保留给标准浮点扩展的7个主要操作码（LOAD-FP、STORE-FP、MADD、MSUB、NMSUB、NMADD、OP-FP）可以被非标准扩展重用。类似的，AMO主要操作码在不需要标准原子性扩展时，也可以被重用。</p>
+<p>​       如果一个实现不需要超过32位长度的指令，则有额外的4个主要操作码可供使用（表 9.1中灰色部分）。
+​       基本RV32I只使用了11个主要操作码和3个保留操作码，给扩展留下18个可用的操作码。基本RV64I只使用了13个主要操作码和3个保留操作码，给扩展留下16个可用的操作码。</p>
+<h3 id="22">可用的 22 位指令编码空间</h3>
+<p>​       一个22位的编码空间对应于基本编码和标准扩展编码中的一个funct3小操作码空间。几个主要操作码有一个未被完全占用的函数域小操作码，从而留下几个可用的22位编码空间。
+​       通常主操作码选择用于在指令的剩余位中编码操作数的格式，理想情况下，扩展应该遵循主操作码的操作数格式，以简化硬件解码.</p>
+<h3 id="_1">其他空间</h3>
+<p>​       在某些主要操作码下有更小的可用空间，并不是所有次要操作码都被完全填充。</p>
+<h2 id="264-64">26.4 添加64位指令扩展</h2>
+<p>​       如果扩展对于基本的32位固定宽度指令格式来说太大，那么最简单的方法就是添加自然对齐的64位指令。实现必须仍然支持32位基本指令格式，但可以要求64位指令对齐到64位边界，以简化指令取指，在必要时使用32位NOP指令作为对齐填充。</p>
+<p>​       为简化标准工具的使用，64位指令的编码方式应该如图1 - 1所示。但是，实现可能为64位指令选择非标准指令长度编码，同时为32位指令保留标准编码。例如，如果不需要压缩指令，那么64位指令可以使用一个或多个0位在指令的前两个位进行编码。</p>
+<p><img alt="image-20240127175028602" src="../Extending%20RISC-V.assets/image-20240127175028602.png" /></p>
+<h1 id="matrix-extension">Matrix eXtension</h1>
+<p>​       使用25位编码空间的custom-1段空间，<code>opcode[6:0] = 7'b0101011</code>。</p>
+<h4 id="matrix-set">Matrix Set指令：设置此条指令后续的矩阵行列形状</h4>
+<h4 id="matrix-loadm-load">Matrix Load指令：M-LOAD</h4>
+<ul>
+<li>src</li>
+<li>rs1：base address</li>
+<li>imm：多少行多少列</li>
+</ul>
+<h4 id="matrix-storem-store">Matrix Store指令：M-STORE</h4>
+<h4 id="matrix-generate0">Matrix Generate指令：用于生成0矩阵、单位矩阵等特殊矩阵；</h4>
+<p>​       </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.c011b7c0.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.7389ff0e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
